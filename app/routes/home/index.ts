@@ -18,6 +18,7 @@ export class HomeComponent {
   test: any;
   constructor(requestService: RequestService) {
     requestService.test().then((data: any) => {this.test = data});
+    requestService.get('/profile/1617/alexander.bauer', (data) => {console.log("data",data);},null)
     console.log(this.test);
   }
 }
