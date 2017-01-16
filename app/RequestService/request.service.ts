@@ -42,13 +42,17 @@ export class RequestService {
   //TODO: Make these two functions use cookies to store the token.
   private setAuth(data): void {
     let token = data.token || '';
-    window.localStorage.setItem('token', token);
+    document.cookie = "token=" + token + "; domain= " + COOKIE_DOMAIN + "; max-age=1209600; path=/";
     //this.setUser(data.user);
   }
 
   private getToken(): string {
-    let token = window.localStorage.getItem('token') || '';
-    // let token = this.cookie.get('token');
+    let cookieArr = document.cookie.split(';').filter(function(value) {return value.indexOf("token=") == 0})
+    let cookie;
+    if(cookieArr && "length" in cookieArr && cookieArr.length == 1){
+      cookie = cookieArr[0].split('=')[1]
+    }
+    let token = cookie || '';
     return token;
   }
 
