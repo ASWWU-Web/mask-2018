@@ -94,4 +94,15 @@ export class RequestService {
         err => (catchError ? catchError(err) : console.error(err))
       );
   }
+  post(uri: string, data: any, afterRequest, catchError): void {
+    let body = JSON.stringify(data);
+    let req = this.createRequest(uri);
+    this.http.post(req.url, body, req.options)
+      .map(res => res.json())
+      .subscribe(
+        data => afterRequest(data),
+        err => (catchError ? catchError(err) : console.error(err))
+      );
+  }
+
 }
