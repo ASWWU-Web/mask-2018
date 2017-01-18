@@ -9,10 +9,39 @@ import 'rxjs/add/operator/toPromise';
 import 'rxjs/add/operator/map';
 
 import { SERVER_URL, COOKIE_DOMAIN } from '../config';
+import {User} from "./user.model";
 
 @Injectable()
 export class RequestService {
-  //TODO: Add current user object (see older request service)
+  private authUser: User;
+
+  private setCurrentUser(user: any): void {
+    try {
+      user=JSON.parse(user);
+    } catch(e) { }
+    if(user.wwuid) {
+      this.authUser = new User(user);
+    } else if(user.user.wwuid) {
+      this.authUser = new User(user.user);
+    } else {
+      this.authUser = undefined;
+    }
+  }
+
+  private verify(cb: any): void {
+    if(this.getToken().length) {
+      this.get("verify", data => {
+        this.setAuth(data);
+      }, err => {
+          this.setAuth({});
+          if(typeof cb == "function") cb({});
+      });
+    } else {
+      this.setAuth({});
+      if(typeof cb == "function") cb({});
+    }
+  }
+
 
   constructor(private http: Http) { }
 
@@ -24,7 +53,7 @@ export class RequestService {
 
   private createRequest(uri: string): any {
     let url = uri;
-    if (url.indexOf("http") != 0) {
+    if (url.indexOf("http")) {
       url = SERVER_URL;
       if (url.split('').pop() != '/' && uri[0] != '/') url += '/';
       url += uri;
@@ -43,7 +72,7 @@ export class RequestService {
   private setAuth(data): void {
     let token = data.token || '';
     document.cookie = "token=" + token + "; domain= " + COOKIE_DOMAIN + "; max-age=1209600; path=/";
-    //this.setUser(data.user);
+    this.setCurrentUser(data.user);
   }
 
   private getToken(): string {
