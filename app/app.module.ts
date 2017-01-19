@@ -6,7 +6,7 @@ import { HttpModule }    from '@angular/http';
 
 import { AppComponent }  from './app.component';
 
-import { HomeComponent, SearchComponent } from './routes/index';
+import { HomeComponent, SearchComponent } from './routes/routes';
 
 @NgModule({
   imports: [

@@ -1,7 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
 
-import { RequestService } from "../../RequestService/index";
+import { RequestService } from "../../RequestService/requests";
 
 @Component({
   template:  `
