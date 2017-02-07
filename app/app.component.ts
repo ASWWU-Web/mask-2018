@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import {Component, NgModule} from '@angular/core';
+
 @Component({
   selector: 'my-app',
   template:  `
@@ -6,4 +7,7 @@ import { Component } from '@angular/core';
     <router-outlet></router-outlet>
   `
 })
-export class AppComponent {}
+
+export class AppComponent {
+
+}
