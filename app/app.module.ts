@@ -11,6 +11,8 @@ import { ProfileComponent } from './routes/profile/profile.component'
 
 import { HomeComponent, SearchComponent } from './routes/routes';
 
+import { ProfileFullComponent } from './shared/profile-full/index'
+
 @NgModule({
   imports: [
     BrowserModule,
@@ -37,6 +39,7 @@ import { HomeComponent, SearchComponent } from './routes/routes';
     HomeComponent,
     SearchComponent,
     ProfileComponent,
+    ProfileFullComponent,
   ],
   bootstrap: [ AppComponent ]
 })
