@@ -14,12 +14,15 @@ import {User} from "./user.model";
 @Injectable()
 export class RequestService {
   private authUser: User;
+  private isLoggedIn: boolean;
 
   private setCurrentUser(user: any): void {
     if(user.hasOwnProperty("wwuid") && user.wwuid) {
       this.authUser = new User(user);
+      this.isLoggedIn = true;
     } else {
       this.authUser = undefined;
+      this.isLoggedIn = false;
     }
   }
 
@@ -82,7 +85,7 @@ export class RequestService {
 
   isLoggedOn(): boolean {
     //Returns true if authUser is defined, false otherwise
-    return !!this.authUser;
+    return this.isLoggedIn;
   }
 
 }
