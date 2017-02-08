@@ -17,9 +17,9 @@ export class HomeComponent {
   //For testing purposes.
   test: any;
   constructor(requestService: RequestService) {
-    requestService.test().then((data: any) => {this.test = data});
-    requestService.get('/profile/1617/alexander.bauer', (data) => {console.log("data",data);},null);
-    requestService.post('/login', 'hello', (data) => {console.log("postData",data);},null);
-    console.log(this.test);
+    //requestService.test().then((data: any) => {this.test = data});
+    requestService.get('/search/all', (data) => {this.test = data.results},null);
+    // requestService.post('/login', 'hello', (data) => {console.log("postData",data);},null);
+    requestService.verify((data) => {console.log(data);})
   }
 }
