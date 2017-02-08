@@ -14,39 +14,37 @@ import {User} from "./user.model";
 @Injectable()
 export class RequestService {
   private authUser: User;
+  private isLoggedIn: boolean;
 
   private setCurrentUser(user: any): void {
-    try {
-      user=JSON.parse(user);
-    } catch(e) { }
-    if(user.wwuid) {
+    if(user.hasOwnProperty("wwuid") && user.wwuid) {
       this.authUser = new User(user);
-    } else if(user.user.wwuid) {
-      this.authUser = new User(user.user);
+      this.isLoggedIn = true;
     } else {
       this.authUser = undefined;
+      this.isLoggedIn = false;
     }
   }
 
-  private verify(cb: any): void {
+  // Gets current user and sets it to authUser
+  // Also returns the user object to the calback function. 
+  verify(cb?: any): void {
     this.get("verify", data => {
       //Log in the user
       console.log('Log in user');
+      var user = data.user || null;
+      this.setCurrentUser(user);
+      if(typeof cb == "function") cb(user);
     }, err => {
         //user in not logged in remove authUser.
-        console.log('Remove User object');
-        if(typeof cb == "function") cb({});
+        this.setCurrentUser({});
+        if(typeof cb == "function") cb(null);
     });
   }
 
 
   constructor(private http: Http) { }
 
-  //This is a test function that I'm pretty sure isn't the right way to do this but it works.
-  test(): any{
-    /*console.log(http);*/
-    return this.http.get(SERVER_URL + '/search/all').toPromise().then(response => response.json().results);
-  }
 
   private createRequest(uri: string): any {
     let url = uri;
@@ -83,6 +81,11 @@ export class RequestService {
         data => afterRequest(data),
         err => (catchError ? catchError(err) : console.error(err))
       );
+  }
+
+  isLoggedOn(): boolean {
+    //Returns true if authUser is defined, false otherwise
+    return this.isLoggedIn;
   }
 
 }
