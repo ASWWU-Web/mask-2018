@@ -7,6 +7,7 @@ import { ActivatedRoute, Params } from '@angular/router';
 import { RequestService } from '../../RequestService/requests';
 
 import { ProfileFullComponent } from '../../shared/profile-full/index';
+import { ProfileSmComponent } from '../../shared/profile-sm/index';
 
 @Component({
     selector: 'test-profile',
@@ -14,10 +15,11 @@ import { ProfileFullComponent } from '../../shared/profile-full/index';
         <h2> Name: {{profile?.full_name}}</h2>
         <p> Majors: {{profile?.majors}}</p>
         <profile-full></profile-full>
+        <profile-sm></profile-sm>
     `,
     providers: [
         RequestService
-    ]
+    ],
 })
 
 export class ProfileComponent {
