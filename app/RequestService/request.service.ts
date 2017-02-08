@@ -29,17 +29,14 @@ export class RequestService {
   }
 
   private verify(cb: any): void {
-    if(this.getToken().length) {
-      this.get("verify", data => {
-        this.setAuth(data);
-      }, err => {
-          this.setAuth({});
-          if(typeof cb == "function") cb({});
-      });
-    } else {
-      this.setAuth({});
-      if(typeof cb == "function") cb({});
-    }
+    this.get("verify", data => {
+      //Log in the user
+      console.log('Log in user');
+    }, err => {
+        //user in not logged in remove authUser.
+        console.log('Remove User object');
+        if(typeof cb == "function") cb({});
+    });
   }
 
 
@@ -60,30 +57,13 @@ export class RequestService {
     }
 
     let headers = new Headers({
-      'Content-Type': 'application/json',
-      'Authorization': 'HMAC '+this.getToken()
+      'Content-Type': 'application/json'
     });
     let options = new RequestOptions({ headers: headers });
 
     return { url: url, options: options };
   }
 
-  //TODO: Make these two functions use cookies to store the token.
-  private setAuth(data): void {
-    let token = data.token || '';
-    document.cookie = "token=" + token + "; domain= " + COOKIE_DOMAIN + "; max-age=1209600; path=/";
-    this.setCurrentUser(data.user);
-  }
-
-  private getToken(): string {
-    let cookieArr = document.cookie.split(';').filter(function(value) {return value.indexOf("token=") == 0})
-    let cookie;
-    if(cookieArr && "length" in cookieArr && cookieArr.length == 1){
-      cookie = cookieArr[0].split('=')[1]
-    }
-    let token = cookie || '';
-    return token;
-  }
 
   get(uri: string, afterRequest, catchError): void {
     let req = this.createRequest(uri);
