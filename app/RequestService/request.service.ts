@@ -27,19 +27,24 @@ export class RequestService {
   }
 
   // Gets current user and sets it to authUser
-  // Also returns the user object to the calback function. 
+  // Also returns the user object to the callback function.
   verify(cb?: any): void {
-    this.get("verify", data => {
-      //Log in the user
-      console.log('Log in user');
-      var user = data.user || null;
-      this.setCurrentUser(user);
-      if(typeof cb == "function") cb(user);
-    }, err => {
-        //user in not logged in remove authUser.
-        this.setCurrentUser({});
-        if(typeof cb == "function") cb(null);
-    });
+    if(document.cookie.search("token=") !== -1)  {
+      this.verifyGet("verify", data => {
+        //Log in the user
+        console.log('Log in user');
+        var user = data.user || null;
+        this.setCurrentUser(user);
+        if(typeof cb == "function") cb(user);
+      }, err => {
+          //user in not logged in remove authUser.
+          this.setCurrentUser({});
+          if(typeof cb == "function") cb(null);
+      });
+    } else {
+      this.authUser = undefined;
+      this.isLoggedIn = false;
+    }
   }
 
 
@@ -62,9 +67,19 @@ export class RequestService {
     return { url: url, options: options };
   }
 
+  private verifyGet(uri: string, afterRequest, catchError): void {
+    let req = this.createRequest(uri);
+    this.http.get(req.url,req.options)
+        .map(res => res.json())
+        .subscribe(
+            data => afterRequest(data),
+            err => (catchError ? catchError(err) : console.error(err))
+        );
+  }
 
   get(uri: string, afterRequest, catchError): void {
     let req = this.createRequest(uri);
+    this.verify();
     this.http.get(req.url,req.options)
       .map(res => res.json())
       .subscribe(
@@ -74,6 +89,7 @@ export class RequestService {
   }
   post(uri: string, data: any, afterRequest, catchError): void {
     let body = JSON.stringify(data);
+    this.verify();
     let req = this.createRequest(uri);
     this.http.post(req.url, body, req.options)
       .map(res => res.json())
