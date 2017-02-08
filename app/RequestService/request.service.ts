@@ -44,7 +44,6 @@ export class RequestService {
 
   //This is a test function that I'm pretty sure isn't the right way to do this but it works.
   test(): any{
-    /*console.log(http);*/
     return this.http.get(SERVER_URL + '/search/all').toPromise().then(response => response.json().results);
   }
 
@@ -83,6 +82,11 @@ export class RequestService {
         data => afterRequest(data),
         err => (catchError ? catchError(err) : console.error(err))
       );
+  }
+
+  isLoggedOn(): boolean {
+    //Returns true if authUser is defined, false otherwise
+    return !!this.authUser;
   }
 
 }
