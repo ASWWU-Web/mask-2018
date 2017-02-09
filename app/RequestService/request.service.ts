@@ -13,7 +13,7 @@ import {User} from "./user.model";
 
 @Injectable()
 export class RequestService {
-  private authUser: User;
+  prvauthUser: User;
   private isLoggedIn: boolean;
 
   private setCurrentUser(user: any): void {
@@ -33,7 +33,7 @@ export class RequestService {
       this.verifyGet("verify", data => {
         //Log in the user
         console.log('Log in user');
-        var user = data.user || null;
+        let user = data.user || null;
         this.setCurrentUser(user);
         if(typeof cb == "function") cb(user);
       }, err => {

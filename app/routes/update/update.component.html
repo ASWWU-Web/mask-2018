@@ -1,0 +1,30 @@
+<div *ngIf="fullProfile">
+    <h1>{{profile.username}}</h1>
+    <hr>
+    <!--<div>-->
+        <!--<br>-->
+        <!--<div *ngFor="let url of possiblePhotos" class="possiblePhoto" (click)="changePhoto(url)">-->
+            <!--<img src="{{ fullProfile.getPhotoLink(url) }}" [class.checked]="url.split('/').pop() == fullProfile.photo.split('/').pop()">-->
+        <!--</div>-->
+    <!--</div>-->
+
+    <div *ngFor="let field of fields;">
+        <div *ngIf="!(field == 'department' || field == 'office' || field == 'office_hours' )">{{field}}</div>
+
+        <input *ngIf="!selectables[field]&&!(field == 'department' || field == 'office' || field == 'office_hours' )" type="text" class="form-control" id="{{field}}" [(ngModel)]="fullProfile[field]">
+
+        <!--<div *ngIf="fullProfile[field] && searchables[field] && (fullProfile[field].indexOf(',')!==-1 ? fullProfile[field].split(',').pop().trim().length > 0 : false)">-->
+            <!--<p *ngFor="let option of searchables[field]; let i = index" (click)="setSearchableField(field, option)">-->
+                <!--<span *ngIf="option.toLowerCase().indexOf(profile[field].split(',').pop().trim().toLowerCase()) == 0">{{field}}</span>-->
+            <!--</p>-->
+        <!--</div>-->
+
+        <select *ngIf="selectables.hasOwnProperty(field)" [(ngModel)]="fullProfile[field]">
+            <option *ngFor="let options of selectables[field]" [value]="field == 'privacy' ? selectables[field].indexOf(options) : options">{{options}}</option>
+        </select>
+    </div>
+
+    <div>
+        <h2><button id="Submit" (click)="UploadProfile()">Update Profile</button></h2>
+    </div>
+</div>

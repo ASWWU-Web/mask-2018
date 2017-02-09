@@ -9,7 +9,7 @@ import { AppComponent }  from './app.component';
 
 import { ProfileComponent } from './routes/profile/profile.component'
 
-import { HomeComponent, SearchComponent } from './routes/routes';
+import { HomeComponent, SearchComponent, UpdateComponent } from './routes/routes';
 
 import { ProfileFullComponent, ProfileSmComponent } from './shared/index'
 
@@ -29,6 +29,10 @@ import { ProfileFullComponent, ProfileSmComponent } from './shared/index'
         component: SearchComponent
       },
       {
+        "path": 'profile/update',
+        component: UpdateComponent
+      },
+      {
         "path": 'profile/:username',
         component: ProfileComponent
       }
@@ -40,7 +44,8 @@ import { ProfileFullComponent, ProfileSmComponent } from './shared/index'
     SearchComponent,
     ProfileComponent,
     ProfileFullComponent,
-    ProfileSmComponent
+    ProfileSmComponent,
+    UpdateComponent
   ],
   bootstrap: [ AppComponent ]
 })
