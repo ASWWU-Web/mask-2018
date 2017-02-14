@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
+import { RequestService } from '../../RequestService/request.service';
 
 @Component({
 	selector: 'profile-full',
@@ -7,5 +8,7 @@ import { Component } from '@angular/core';
 })
 
 export class ProfileFullComponent {
-	
+	@Input('User') username: string;
+
+
 }

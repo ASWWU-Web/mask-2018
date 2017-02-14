@@ -29,11 +29,15 @@ import { ProfileFullComponent, ProfileSmComponent } from './shared/index'
         component: SearchComponent
       },
       {
-        "path": 'profile/update',
+        "path": 'update',
         component: UpdateComponent
       },
       {
         "path": 'profile/:username',
+        component: ProfileComponent
+      },
+      {
+        "path": 'profile/:username/:year',
         component: ProfileComponent
       }
     ])
