@@ -13,7 +13,7 @@ import {User} from "./user.model";
 
 @Injectable()
 export class RequestService {
-  prvauthUser: User;
+  authUser: User;
   private isLoggedIn: boolean;
 
   private setCurrentUser(user: any): void {

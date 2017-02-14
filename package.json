@@ -1,5 +1,5 @@
 {
-  "name": "ASWWU Mask",
+  "name": "aswwu_mask",
   "version": "1.0.0",
   "scripts": {
     "start": "tsc && concurrently \"tsc -w\" \"lite-server -c bs-config.js\" ",
