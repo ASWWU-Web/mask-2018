@@ -1,1 +1,4 @@
-<h2> The illustrious small profile </h2>
+<a [routerLink]="['/profile', searchResult.username]">
+  <img src="{{mediaSM + searchResult.photo}}" />
+  <h4>{{searchResult.full_name}}</h4>
+</a>

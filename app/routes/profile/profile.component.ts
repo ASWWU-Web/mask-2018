@@ -15,7 +15,7 @@ import { ProfileSmComponent } from '../../shared/profile-sm/index';
         <h2> Name: {{profile?.full_name}}</h2>
         <p> Majors: {{profile?.majors}}</p>
         <profile-full></profile-full>
-        <profile-sm></profile-sm>
+        <profile-sm [searchResult]='{username:"ryan.rabello",photo:"test",full_name:"Ryan Rabello"}'></profile-sm>
     `,
     providers: [
         RequestService
