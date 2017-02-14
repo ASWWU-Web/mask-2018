@@ -9,15 +9,16 @@
     <!--</div>-->
 
     <div *ngFor="let field of fields;">
-        <div *ngIf="!(field == 'department' || field == 'office' || field == 'office_hours' )">{{field}}</div>
+        <div *ngIf="!(field == 'department' || field == 'office' || field == 'office_hours' )">{{field.split('_').join(' ')}}</div>
 
-        <input *ngIf="!selectables[field]&&!(field == 'department' || field == 'office' || field == 'office_hours' )" type="text" class="form-control" id="{{field}}" [(ngModel)]="fullProfile[field]">
+        <input *ngIf="!searchables.hasOwnProperty(field)&&!selectables[field]&&!(field == 'department' || field == 'office' || field == 'office_hours' )" type="text" class="form-control" id="{{field+'input'}}" [(ngModel)]="fullProfile[field]">
 
-        <!--<div *ngIf="fullProfile[field] && searchables[field] && (fullProfile[field].indexOf(',')!==-1 ? fullProfile[field].split(',').pop().trim().length > 0 : false)">-->
-            <!--<p *ngFor="let option of searchables[field]; let i = index" (click)="setSearchableField(field, option)">-->
-                <!--<span *ngIf="option.toLowerCase().indexOf(profile[field].split(',').pop().trim().toLowerCase()) == 0">{{field}}</span>-->
-            <!--</p>-->
-        <!--</div>-->
+        <div *ngIf="searchables.hasOwnProperty(field)">
+            <input  [attr.list]="field" [(ngModel)]="fullProfile[field]">
+            <datalist id="{{field}}">
+                <option *ngFor="let options of searchables[field]" [value]="options">{{options}}</option>
+            </datalist>
+        </div>
 
         <select *ngIf="selectables.hasOwnProperty(field)" [(ngModel)]="fullProfile[field]">
             <option *ngFor="let options of selectables[field]" [value]="field == 'privacy' ? selectables[field].indexOf(options) : options">{{options}}</option>

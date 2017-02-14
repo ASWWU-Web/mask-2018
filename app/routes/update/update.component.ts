@@ -4,6 +4,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { ActivatedRoute, Params } from '@angular/router';
+import { FormsModule } from '@angular/forms';
 import { RequestService } from '../../RequestService/requests';
 import { ProfileModel } from '../../shared/profile.model';
 import { FieldsInOrder, SelectFields, SearchableFields } from '../../shared/fields';
@@ -53,16 +54,6 @@ export class UpdateComponent implements OnInit {
         }
     }
 
-    setSearchableField(field: string, option: string): void {
-        let items = this.profile[field].split(',').map((a) => {return a.trim();}).filter((a) => {return a != '';});
-        items.pop();
-        items.push(option);
-        items.push('');
-        this.profile[field] = items.join(', ');
-        try {
-            document.getElementById('input_' + field).focus();
-        } catch(e) { }
-    }
 
     UploadProfile(): void {
         this.requestService.post("/update/"+this.fullProfile.username, this.fullProfile, (data) => {console.log(data);}, undefined);
