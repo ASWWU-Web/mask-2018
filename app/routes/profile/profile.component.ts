@@ -6,15 +6,15 @@ import { Subscription } from 'rxjs';
 import { ActivatedRoute, Params } from '@angular/router';
 import { RequestService } from '../../RequestService/requests';
 
-import { ProfileFullComponent } from '../../shared/profile-full/index';
-import { ProfileSmComponent } from '../../shared/profile-sm/index';
+import { ProfileFullComponent, ProfileSmComponent, ProfileModel } from '../../shared/index';
+
 
 @Component({
     selector: 'test-profile',
     template: `
         <h2> Name: {{profile?.full_name}}</h2>
         <p> Majors: {{profile?.majors}}</p>
-        <profile-full></profile-full>
+        <profile-full [profile] = 'profile'></profile-full>
         <profile-sm [searchResult]='{username:"ryan.rabello",photo:"test",full_name:"Ryan Rabello"}'></profile-sm>
     `,
     providers: [
@@ -24,7 +24,7 @@ import { ProfileSmComponent } from '../../shared/profile-sm/index';
 
 export class ProfileComponent {
     username: String;
-    profile: any;
+    profile: ProfileModel;
     constructor(requestService: RequestService) {
         requestService.get("/profile/1617/ryan.rabello", (data) => this.profile = data, undefined);
     }
