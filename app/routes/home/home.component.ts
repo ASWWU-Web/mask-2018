@@ -20,6 +20,6 @@ export class HomeComponent {
     //requestService.test().then((data: any) => {this.test = data});
     requestService.get('/search/all', (data) => {this.test = data.results},null);
     // requestService.post('/login', 'hello', (data) => {console.log("postData",data);},null);
-    requestService.verify((data) => {console.log(data);})
+    requestService.verify((data) => {console.log(data);});
   }
 }

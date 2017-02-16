@@ -6,7 +6,7 @@ import { Subscription } from 'rxjs';
 import { ActivatedRoute, Params } from '@angular/router';
 import { RequestService } from '../../RequestService/requests';
 
-import { ProfileFullComponent, ProfileSmComponent, ProfileModel } from '../../shared/index';
+import { ProfileFullComponent, ProfileSmComponent, ProfileModel } from '../../shared/shared';
 
 
 @Component({

@@ -8,7 +8,7 @@ import { FormsModule } from '@angular/forms';
 import { RequestService } from '../../RequestService/requests';
 import { ProfileModel } from '../../shared/profile.model';
 import { FieldsInOrder, SelectFields, SearchableFields } from '../../shared/fields';
-import { CURRENT_YEAR, MEDIA_URI, DEFAULT_PHOTO } from '../../config'
+import { CURRENT_YEAR, MEDIA_URI, DEFAULT_PHOTO } from '../../config';
 
 @Component({
     selector: 'update-profile',

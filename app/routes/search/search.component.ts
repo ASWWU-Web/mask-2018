@@ -1,17 +1,14 @@
 import { Subscription } from 'rxjs';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Params } from '@angular/router';
-import { SearchResultsComponent } from '../../shared/index'
+import { SearchResultsComponent } from '../../shared/shared';
 
 @Component({
   template:  `
     <h2>Search</h2>
     <p> Query: '{{query}}'</p>
 
-
-    <!--
-    THis is broke and not working. :(
-    <search-results [query]='query'></search-results>-->
+    <search-results [query]='query'></search-results>
   `
 })
 

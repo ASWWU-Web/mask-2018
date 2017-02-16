@@ -1,15 +1,12 @@
 import { Component, Input } from '@angular/core';
-import { ProfileSmComponent } from '../index';
+import { ProfileSmComponent } from '../shared';
 
 @Component({
   selector: "search-results",
-  templateUrl: "./search.component.html",
-  inputs: ['profile-sm','query']
+  templateUrl: "app/shared/search-results/search-results.component.html",
 })
-
 
 
 export class SearchResultsComponent {
   @Input() query: string;
-
 }

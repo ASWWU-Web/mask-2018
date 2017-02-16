@@ -1,7 +1,7 @@
 import { Component, Input } from '@angular/core';
 import { RequestService } from '../../RequestService/request.service';
 
-import { ProfileModel } from '../index';
+import { ProfileModel } from '../shared';
 
 @Component({
 	selector: 'profile-full',
