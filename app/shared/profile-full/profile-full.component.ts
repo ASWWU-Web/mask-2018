@@ -1,7 +1,7 @@
 import { Component, Input } from '@angular/core';
 import { RequestService } from '../../RequestService/request.service';
 
-import { ProfileModel } from '../shared';
+import { ProfileModel, FieldsInOrder } from '../shared';
 
 @Component({
 	selector: 'profile-full',
@@ -12,5 +12,9 @@ import { ProfileModel } from '../shared';
 export class ProfileFullComponent {
 	@Input('User') username: string;
 	@Input() profile: ProfileModel;
+
+	fieldsInOrder: string[] = FieldsInOrder;
+
+	displayKey(key: string): string { return key.replace(/_/g, ' '); }
 
 }
