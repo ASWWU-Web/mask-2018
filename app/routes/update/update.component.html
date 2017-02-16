@@ -1,12 +1,12 @@
 <div *ngIf="fullProfile">
     <h1>{{profile.username}}</h1>
     <hr>
-    <!--<div>-->
-        <!--<br>-->
-        <!--<div *ngFor="let url of possiblePhotos" class="possiblePhoto" (click)="changePhoto(url)">-->
-            <!--<img src="{{ fullProfile.getPhotoLink(url) }}" [class.checked]="url.split('/').pop() == fullProfile.photo.split('/').pop()">-->
-        <!--</div>-->
-    <!--</div>-->
+    <div>
+        <br>
+        <div *ngFor="let url of possiblePhotos" class="possiblePhoto" (click)="changePhoto(url)">
+            <img src="{{ this.getPhotoLink(url) }}" [class.checked]="url.split('/').pop() == fullProfile.photo.split('/').pop()">
+        </div>
+    </div>
 
     <div *ngFor="let field of fields;">
         <div *ngIf="!(field == 'department' || field == 'office' || field == 'office_hours' )">{{field.split('_').join(' ')}}</div>
