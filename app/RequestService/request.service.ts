@@ -32,7 +32,6 @@ export class RequestService {
     if(document.cookie.search("token=") !== -1)  {
       this.verifyGet("verify", data => {
         //Log in the user
-        console.log('Log in user');
         let user = data.user || null;
         this.setCurrentUser(user);
         if(typeof cb == "function") cb(user);
@@ -53,7 +52,7 @@ export class RequestService {
 
   private createRequest(uri: string): any {
     let url = uri;
-    if (url.indexOf("http")) {
+    if (!url.startsWith("http")) {
       url = SERVER_URL;
       if (url.split('').pop() != '/' && uri[0] != '/') url += '/';
       url += uri;

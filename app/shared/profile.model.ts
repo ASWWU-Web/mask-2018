@@ -4,6 +4,7 @@
 
 import { MEDIA_URI, DEFAULT_PHOTO } from '../config';
 
+
 export class ProfileModel {
     wwuid: string;
     username: string;
