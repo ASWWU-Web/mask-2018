@@ -13,7 +13,6 @@ export class ProfileSmComponent {
 	@Input() searchResults: any;
 	//Photourl to link funciton returns proper url and BLANK photo if photo == "None"
 	getPhotoLink(url: string){
-		console.log("url", url);
 		if(url && url != "None"){
 			return MEDIA_SM + "/" + url;
 		} else {
