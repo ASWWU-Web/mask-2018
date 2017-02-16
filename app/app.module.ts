@@ -33,6 +33,10 @@ import { ProfileFullComponent, ProfileSmComponent } from './shared/index'
         component: UpdateComponent
       },
       {
+        "path": 'profile',
+        component: ProfileComponent
+      },
+      {
         "path": 'profile/:username',
         component: ProfileComponent
       },
