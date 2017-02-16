@@ -7,7 +7,11 @@ import { SearchResultsComponent } from '../../shared/index'
   template:  `
     <h2>Search</h2>
     <p> Query: '{{query}}'</p>
-    <search-results [query]='query'></search-results>
+
+
+    <!--
+    THis is broke and not working. :(
+    <search-results [query]='query'></search-results>-->
   `
 })
 

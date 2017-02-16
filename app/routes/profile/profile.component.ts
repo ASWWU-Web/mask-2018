@@ -15,7 +15,7 @@ import { ProfileFullComponent, ProfileSmComponent, ProfileModel } from '../../sh
         <h2> Name: {{profile?.full_name}}</h2>
         <p> Majors: {{profile?.majors}}</p>
         <profile-full [profile] = 'profile'></profile-full>
-        <profile-sm [searchResult]='{username:"ryan.rabello",photo:"test",full_name:"Ryan Rabello"}'></profile-sm>
+        <profile-sm [searchResult]='{username:"ryan.rabello",photo:"profiles/1516/02209-2000528.jpg",full_name:"Ryan Rabello"}'></profile-sm>
     `,
     providers: [
         RequestService

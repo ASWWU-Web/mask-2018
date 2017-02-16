@@ -1,5 +1,5 @@
-import { Component } from '@angular/core';
-import { MEDIA_SM } from '../../config';
+import { Component, Input } from '@angular/core';
+import { MEDIA_SM, DEFAULT_PHOTO } from '../../config';
 
 @Component({
 	selector: 'profile-sm',
@@ -10,6 +10,15 @@ import { MEDIA_SM } from '../../config';
 
 
 export class ProfileSmComponent {
-	mediaSM: string = MEDIA_SM;
+	@Input() searchResults: any;
+	//Photourl to link funciton returns proper url and BLANK photo if photo == "None"
+	getPhotoLink(url: string){
+		console.log("url", url);
+		if(url && url != "None"){
+			return MEDIA_SM + "/" + url;
+		} else {
+			return MEDIA_SM + "/" + DEFAULT_PHOTO;
+		}
+	}
 
 }
