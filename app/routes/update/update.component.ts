@@ -19,6 +19,9 @@ import { CURRENT_YEAR, MEDIA_URI, DEFAULT_PHOTO } from '../../config'
     ],
 })
 
+/*
+ * This is the component that handles a user updating their profile.
+ * */
 export class UpdateComponent implements OnInit {
     constructor(private requestService: RequestService) { }
 
@@ -29,6 +32,11 @@ export class UpdateComponent implements OnInit {
     searchables: any = SearchableFields;
     possiblePhotos: string[];
 
+    /*
+    * On initialization of this component, call the verify function to ensure that the user is logged in.
+    * Take the returned minimal profile data and use that to query the server for the user's full profile.
+    * This full profile is then set as fullProfile.
+    * */
     ngOnInit() {
         this.requestService.verify((data) => {
             this.profile = data; this.requestService.get("/profile/1617/"+this.profile.username, (data) => {
@@ -38,6 +46,7 @@ export class UpdateComponent implements OnInit {
         });
     }
 
+    // This function gets the url's of all the possible photos for a user from the endpoint on the server.
     getPhotos(): any {
         this.requestService.get(MEDIA_URI+"/listProfilePhotos.php?wwuid="+this.fullProfile.wwuid+"&year="+CURRENT_YEAR, (photos) => {
             this.possiblePhotos = photos;
@@ -46,10 +55,12 @@ export class UpdateComponent implements OnInit {
         }, undefined);
     }
 
+    // Function to change which picture is set for a user. For use in the html to select a picture.
     changePhoto(url: string): void {
         this.fullProfile.photo = url;
     }
 
+    //Get the link for a given photo
     getPhotoLink(uri: string): string {
         if (!uri || uri == '') uri = this.fullProfile.photo || DEFAULT_PHOTO;
         let photo = MEDIA_URI + "/img-sm/" + uri.replace(MEDIA_URI, "");
@@ -57,6 +68,8 @@ export class UpdateComponent implements OnInit {
         return photo;
     }
 
+    // Takes url-safe strings and converts them into valid ASCII so that Javascript can handle them properly.
+    // e.g. it takes a string like "peanut butter &amp; jelly" and turns it into "peanut butter & jelly"
     Decode(data: any): any {
         if(data.hasOwnProperty('username')) {
             let key: string;
@@ -75,7 +88,7 @@ export class UpdateComponent implements OnInit {
         }
     }
 
-
+    // Lets a user upload their profile to the server.
     UploadProfile(): void {
         this.requestService.post("/update/"+this.fullProfile.username, this.fullProfile, (data) => {console.log(data);}, undefined);
     }

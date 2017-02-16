@@ -26,8 +26,11 @@ export class RequestService {
     }
   }
 
-  // Gets current user and sets it to authUser
-  // Also returns the user object to the callback function.
+  /*
+  * Verifies the login status of the current user.
+  * Gets current user and sets it to authUser
+  * Also returns the user object to the callback function.
+  */
   verify(cb?: any): void {
     if(document.cookie.search("token=") !== -1)  {
       this.verifyGet("verify", data => {
@@ -66,6 +69,10 @@ export class RequestService {
     return { url: url, options: options };
   }
 
+  /*
+  * Seperate function to make get requests in the Verify function.
+  * Use of the normal get function would cause an infinite loop.
+  * */
   private verifyGet(uri: string, afterRequest, catchError): void {
     let req = this.createRequest(uri);
     this.http.get(req.url,req.options)
@@ -76,6 +83,10 @@ export class RequestService {
         );
   }
 
+  /*
+  * Functions to make get and post requests
+  * If a full url isn't specified, the default is aswwu.com/ and then the path given
+  * */
   get(uri: string, afterRequest, catchError): void {
     let req = this.createRequest(uri);
     this.verify();
@@ -98,6 +109,11 @@ export class RequestService {
       );
   }
 
+  /*
+  * Function to view whether or not the user is logged in.
+  * Not sure if needed.
+  * TODO: see if we still need this function.
+  * */
   isLoggedOn(): boolean {
     //Returns true if authUser is defined, false otherwise
     return this.isLoggedIn;

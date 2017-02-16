@@ -4,7 +4,6 @@
 
 import { MEDIA_URI, DEFAULT_PHOTO } from '../config';
 
-
 export class ProfileModel {
     wwuid: string;
     username: string;
@@ -40,6 +39,7 @@ export class ProfileModel {
     office: string;
     office_hours: string;
 
+    //If the data passed to the ProfileModel is a JSON, this constructor will parse it.
     constructor(data: any) {
         if (typeof data == "string") data = JSON.parse(data);
         for (var key in data) {
@@ -62,7 +62,11 @@ export class ProfileModel {
         return link;
     }
 
-    //Taken From Brock's old Angular mask
+    /*
+    * Taken From Brock's old Angular mask
+    * Gets the link for a given photo
+    * TODO: Get functions in the model to be accessible to components
+    * */
     getPhotoLink(uri: string): string {
         if (!uri || uri == '') uri = this.photo || DEFAULT_PHOTO;
         let photo = MEDIA_URI + "/img-sm/" + uri.replace(MEDIA_URI, "");
