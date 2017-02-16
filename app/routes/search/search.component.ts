@@ -1,4 +1,4 @@
-import {Subscription } from 'rxjs';
+import { Subscription } from 'rxjs';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Params } from '@angular/router';
 import { SearchResultsComponent } from '../../shared/index'
