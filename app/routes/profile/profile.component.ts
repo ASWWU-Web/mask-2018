@@ -13,8 +13,8 @@ import { CURRENT_YEAR, MEDIA_MD, DEFAULT_PHOTO } from '../../config';
 @Component({
     selector: 'test-profile',
     template: `
-      <div class="container">
-        <profile-full [profile] = 'profile'></profile-full>
+      <div class='container'>
+        <profile-full [profile]='profile'></profile-full>
       </div>
     `,
     providers: [

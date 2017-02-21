@@ -1,4 +1,4 @@
 <a [routerLink]="['/profile', searchResult.username]">
-  <img src="{{getPhotoLink(searchResult.photo)}}" style="max-width: 200px; heigh:auto;"/>
+  <img class="rounded" src="{{getPhotoLink(searchResult.photo)}}" alt="{{searchResult.full_name}}" style="max-width: 200px; heigh:auto;"/>
   <h4>{{searchResult.full_name}}</h4>
 </a>
