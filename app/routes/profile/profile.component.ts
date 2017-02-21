@@ -7,15 +7,15 @@ import { ActivatedRoute, Params } from '@angular/router';
 import { RequestService } from '../../RequestService/requests';
 
 import { ProfileFullComponent, ProfileSmComponent, ProfileModel } from '../../shared/shared';
+import { CURRENT_YEAR, MEDIA_MD, DEFAULT_PHOTO } from '../../config';
 
 
 @Component({
     selector: 'test-profile',
     template: `
-        <h2> Name: {{profile?.full_name}}</h2>
-        <p> Majors: {{profile?.majors}}</p>
+      <div class="container">
         <profile-full [profile] = 'profile'></profile-full>
-        <profile-sm [searchResult]='{username:"ryan.rabello",photo:"profiles/1516/02209-2000528.jpg",full_name:"Ryan Rabello"}'></profile-sm>
+      </div>
     `,
     providers: [
         RequestService
@@ -25,8 +25,17 @@ import { ProfileFullComponent, ProfileSmComponent, ProfileModel } from '../../sh
 export class ProfileComponent {
     username: String;
     profile: ProfileModel;
-    constructor(requestService: RequestService) {
-        requestService.get("/profile/1617/ryan.rabello", (data) => this.profile = data, undefined);
+    private subscription: Subscription;
+
+    constructor(private requestService: RequestService, private activatedRoute: ActivatedRoute) {}
+
+    ngOnInit() {
+    this.subscription = this.activatedRoute.params.subscribe(
+      (param: any) => {
+        //param name specified in the app.module.ts file.
+        this.username = param['username'];
+        this.requestService.get("/profile/"+ CURRENT_YEAR + "/" + this.username, (data) => this.profile = new ProfileModel(data), undefined);
+      });
     }
 
 }

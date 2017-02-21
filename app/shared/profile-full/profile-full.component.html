@@ -1,13 +1,13 @@
 <div *ngIf="profile" class="profile profile-full row">
-  <div class="col-xs-12 col-md-6">
-    <img src='https://aswwu.com/media/img-sm/profiles/1516/02209-2000528.jpg'>
+  <div class="col-sm-12 col-md-6">
+    <img class="img-fluid" src='{{getPhotoLink(profile.photo)}}'>
   </div>
-  <div class="col-xs-12 col-md-6">
+  <div class="col-sm-12 col-md-6">
     <h1 class='text-capitalize'>{{profile?.full_name}} <span *ngIf="profile?.year != CURRENT_YEAR">({{profile.year}})</span></h1>
     <hr>
     <p *ngFor="let key of fieldsInOrder">
       <span *ngIf="profile[key]">
-        <i class="text-muted text-capitalize">{{displayKey(key)}}</i>
+        <i class="text-muted text-capitalize">{{displayKey(key)}} - </i>
         <h5 style="display: inline;font-weight:normal;">{{profile[key]}}</h5>
       </span>
     </p>
