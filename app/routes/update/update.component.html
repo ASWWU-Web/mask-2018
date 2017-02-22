@@ -1,4 +1,4 @@
-<div *ngIf="fullProfile">
+<div *ngIf="requestService.isLoggedOn()">
     <h1>{{profile.username}}</h1>
     <hr>
     <div>
@@ -28,4 +28,9 @@
     <div>
         <h2><button id="Submit" (click)="UploadProfile()">Update Profile</button></h2>
     </div>
+</div>
+
+<div *ngIf="!requestService.isLoggedOn()" >
+    <h1>Hmm... You aren't logged in.</h1>
+    <a class="btn btn-primary" href="https://saml.aswwu.com/?redirectURI=/mask/update">Log in</a>
 </div>

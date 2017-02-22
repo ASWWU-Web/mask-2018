@@ -39,7 +39,8 @@ export class UpdateComponent implements OnInit {
     * */
     ngOnInit() {
         this.requestService.verify((data) => {
-            this.profile = data; this.requestService.get("/profile/1617/"+this.profile.username, (data) => {
+            this.profile = data;
+            this.requestService.get("/profile/1617/"+this.profile.username, (data) => {
                 this.fullProfile = this.Decode(data);
                 this.getPhotos();
             }, undefined);
