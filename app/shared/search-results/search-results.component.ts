@@ -1,4 +1,4 @@
-import { Component, Input, OnChanges } from '@angular/core';
+import { Component, Input, OnChanges, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 import { RequestService } from '../../RequestService/request.service';
@@ -18,6 +18,18 @@ export class SearchResultsComponent {
   constructor (private rs: RequestService) {}
 
   ngOnChanges() {
+    this.update();
+  }
+
+  ngOnInit() {
+    console.log("ngOnInit");
+    if(!this.query){
+      this.query = "";
+    }
+    this.update();
+  }
+
+  update() {
     //Query the server and sort the results.
     this.rs.get('/search/'+ CURRENT_YEAR + "/" + this.query, (data) => {
       this.results = data.results.sort((p1,p2) => {
