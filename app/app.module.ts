@@ -29,6 +29,10 @@ import { ProfileFullComponent, ProfileSmComponent, SearchResultsComponent } from
         component: SearchComponent
       },
       {
+        "path":'search',
+        component: SearchComponent
+      },
+      {
         "path": 'update',
         component: UpdateComponent
       },
