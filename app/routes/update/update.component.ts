@@ -2,9 +2,6 @@
  * Created by ethan on 2/7/17.
  */
 import { Component, OnInit } from '@angular/core';
-import { Subscription } from 'rxjs';
-import { ActivatedRoute, Params } from '@angular/router';
-import { FormsModule } from '@angular/forms';
 import { RequestService } from '../../RequestService/requests';
 import { ProfileModel } from '../../shared/profile.model';
 import { FieldsInOrder, SelectFields, SearchableFields } from '../../shared/fields';
@@ -91,7 +88,7 @@ export class UpdateComponent implements OnInit {
 
     // Lets a user upload their profile to the server.
     UploadProfile(): void {
-        this.requestService.post("/update/"+this.fullProfile.username, this.fullProfile, (data) => {console.log(data);}, undefined);
+        this.requestService.post("/update/"+this.fullProfile.username, this.fullProfile, (data) => { window.location.href = 'https://aswwu.com/mask/profile/' + this.requestService.authUser.username; }, undefined);
     }
 
 

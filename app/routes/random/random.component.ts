@@ -1,14 +1,11 @@
 /**
  * Created by ethan on 2/21/17.
  */
-import { Subscription } from 'rxjs';
 import { Component, OnInit } from '@angular/core';
-import { FormsModule } from '@angular/forms';
-import { Params } from '@angular/router';
 import { RequestService } from '../../RequestService/requests';
 
-import { ProfileFullComponent, ProfileModel } from '../../shared/shared';
-import { CURRENT_YEAR, DEFAULT_PHOTO } from '../../config';
+import { ProfileModel } from '../../shared/shared';
+import { CURRENT_YEAR } from '../../config';
 
 @Component({
     template:  `

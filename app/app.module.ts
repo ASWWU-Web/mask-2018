@@ -9,7 +9,7 @@ import { AppComponent }  from './app.component';
 
 import { ProfileComponent } from './routes/profile/profile.component'
 
-import { HomeComponent, SearchComponent, UpdateComponent, RandomComponent } from './routes/routes';
+import { HomeComponent, SearchComponent, UpdateComponent, RandomComponent, BirthdayComponent } from './routes/routes';
 
 import { ProfileFullComponent, ProfileSmComponent, SearchResultsComponent } from './shared/shared';
 
@@ -51,6 +51,10 @@ import { ProfileFullComponent, ProfileSmComponent, SearchResultsComponent } from
       {
         "path": 'random',
         component: RandomComponent
+      },
+      {
+        "path": 'birthdays',
+        component: BirthdayComponent
       }
     ])
   ],
@@ -63,7 +67,8 @@ import { ProfileFullComponent, ProfileSmComponent, SearchResultsComponent } from
     ProfileSmComponent,
     UpdateComponent,
     SearchResultsComponent,
-    RandomComponent
+    RandomComponent,
+    BirthdayComponent
   ],
   bootstrap: [ AppComponent ]
 })

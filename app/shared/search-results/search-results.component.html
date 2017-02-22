@@ -1,6 +1,5 @@
 <div *ngIf="query">
-  <h3>Search Results for '{{query}}'</h3>
-</div>
-<div *ngFor="let result of results">
-  <profile-sm [searchResult]='result'></profile-sm>
+  <div *ngFor="let result of results">
+    <profile-sm [searchResult]='result'></profile-sm>
+  </div>
 </div>
