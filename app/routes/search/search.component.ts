@@ -9,7 +9,7 @@ import { SearchResultsComponent } from '../../shared/shared';
   template:  `
     <div class="container">
       <h2>Search</h2>
-      <!--wo way data binding is cool but not very efficient in this case. -->
+      <!--Two way data binding is cool but not very efficient in this case. -->
       <input [(ngModel)]='query'>
       <search-results [query]='query'></search-results>
     </div>
