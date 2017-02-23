@@ -9,7 +9,7 @@ import { AppComponent }  from './app.component';
 
 import { ProfileComponent } from './routes/profile/profile.component'
 
-import { HomeComponent, SearchComponent, UpdateComponent, RandomComponent, BirthdayComponent } from './routes/routes';
+import { HomeComponent, SearchComponent, UpdateComponent, RandomComponent, BirthdayComponent, SuperSearchComponent } from './routes/routes';
 
 import { ProfileFullComponent, ProfileSmComponent, SearchResultsComponent } from './shared/shared';
 
@@ -22,15 +22,15 @@ import { ProfileFullComponent, ProfileSmComponent, SearchResultsComponent } from
     RouterModule.forRoot([
       {
         "path": '',
-        component: HomeComponent
+        component: SearchComponent
       },
       {
         "path": 'search/:query',
-        component: SearchComponent
+        component: SuperSearchComponent
       },
       {
         "path":'search',
-        component: SearchComponent
+        component: SuperSearchComponent
       },
       {
         "path": 'update',
@@ -68,7 +68,8 @@ import { ProfileFullComponent, ProfileSmComponent, SearchResultsComponent } from
     UpdateComponent,
     SearchResultsComponent,
     RandomComponent,
-    BirthdayComponent
+    BirthdayComponent,
+    SuperSearchComponent
   ],
   bootstrap: [ AppComponent ]
 })
