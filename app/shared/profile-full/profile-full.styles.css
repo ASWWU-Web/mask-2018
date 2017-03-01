@@ -10,3 +10,14 @@
 	display: inline;
 	font-weight: normal;
 }
+
+.info a {
+	/* TODO: Change when the background is added */
+	color: black;
+	text-decoration: none;
+	border-bottom: 1px solid transparent;
+}
+
+.info a:hover {
+	border-bottom-color: black;
+}

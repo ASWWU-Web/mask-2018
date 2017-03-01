@@ -8,7 +8,12 @@
     <p *ngFor="let key of fieldsInOrder">
       <span *ngIf="profile[key]">
         <i class="text-muted text-capitalize">{{displayKey(key)}} - </i>
-        <h5 class="info">{{profile[key]}}</h5>
+        <!-- TODO: Add some code here that will generate appropriate links for phone and email etc... -->
+        <h5 class="info">
+          <span *ngFor="let attribute of profile[key].split(','); let last = last;">
+            <a [routerLink]="['/search', key + '=' + attribute]">{{attribute + (last ? "" : ",")}}</a>
+          </span>
+        </h5>
       </span>
     </p>
   </div>
