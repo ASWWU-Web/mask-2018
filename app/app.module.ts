@@ -26,7 +26,7 @@ import { ProfileFullComponent, ProfileSmComponent, SearchResultsComponent } from
       },
       {
         "path": 'search/:query',
-        component: SuperSearchComponent
+        component: SearchComponent
       },
       {
         "path":'search',
