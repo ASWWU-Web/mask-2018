@@ -2,6 +2,7 @@ import { Subscription } from 'rxjs';
 import { Component, OnInit } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { ActivatedRoute, Params } from '@angular/router';
+import { CURRENT_YEAR } from '../../config';
 
 import { FieldsInOrder, SelectFields, SearchableFields } from '../../shared/fields';
 
@@ -14,6 +15,7 @@ export class SuperSearchComponent implements OnInit {
     queries: string[] = [];
     fields: string[] = [];
     query: string = '';
+    year: string = CURRENT_YEAR;
     fieldsInOrder: string[] = FieldsInOrder;
     selectables: any = SelectFields;
     searchables: any = SearchableFields;
@@ -41,6 +43,9 @@ export class SuperSearchComponent implements OnInit {
             let field = this.fields[tempindex];
             if(field !== 'year' && field != ''){
                 tempstring += this.fields[tempindex] + "=" + value + ";";
+            }
+            else if(field == 'year') {
+                this.year = value;
             }
             tempindex++;
         }

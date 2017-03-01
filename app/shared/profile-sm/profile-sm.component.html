@@ -1,4 +1,11 @@
-<a [routerLink]="['/profile', searchResult.username]">
+<a *ngIf="this.year == this.current_year" [routerLink]="['/profile', searchResult.username, this.year]">
+  <div class="circle">
+    <img class="img-fluid" src="{{getPhotoLink(searchResult.photo)}}" alt="{{searchResult.full_name}}"/>
+  </div>
+  <h4>{{searchResult.full_name}}</h4>
+</a>
+
+<a *ngIf="this.year != this.current_year" [routerLink]="['/profile/', searchResult.username, (this.year) ? this.year: this.current_year]">
   <div class="circle">
     <img class="img-fluid" src="{{getPhotoLink(searchResult.photo)}}" alt="{{searchResult.full_name}}"/>
   </div>
