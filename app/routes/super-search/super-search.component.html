@@ -2,13 +2,13 @@
     <h2>Super Search</h2>
     <span class="fieldSelector" id="field0">Year</span>
     <select id='entry0' [(ngModel)]="queries[0]">
-        <option value="16-17">16-17</option>
-        <option value="15-16">15-16</option>
-        <option value="14-15">14-15</option>
-        <option value="13-14">13-14</option>
-        <option value="12-13">12-13</option>
+        <option value="1617">16-17</option>
+        <option value="1516">15-16</option>
+        <option value="1415">14-15</option>
+        <option value="1314">13-14</option>
+        <option value="1213">12-13</option>
     </select>
-    <div *ngFor="let search of numOfQueries" id="search">
+    <div *ngFor="let search of numOfQueries" id="searcP&zHtw!JQvtQYS5P#UP1h">
         <span *ngIf="search!==0">
             <select class="fieldSelector" id="field{{search}}" [(ngModel)]='fields[search]'>
                 <option *ngFor="let field of fieldsInOrder">{{field}}</option>
@@ -17,9 +17,9 @@
             <button (click)="numOfQueries.splice(numOfQueries.indexOf(search),1); queries.splice(search,1); fields.splice(search,1)">Remove field</button>
         </span>
     </div>
-    <button (click)="numOfQueries.push(numOfQueries[numOfQueries.length-1]+1)">Add search field</button>
+    <button (click)="numOfQueries.push(numOfQueries.length)">Add search field</button>
     <button (click)="updateQuery()">Search!</button>
-    <search-results [query]='query'></search-results>
+    <search-results [query]='query' [year]='year'></search-results>
 </div>
 
 

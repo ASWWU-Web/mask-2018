@@ -13,7 +13,8 @@ import { CURRENT_YEAR } from '../../config';
 
 
 export class SearchResultsComponent {
-  @Input() query: string;
+  @Input() query: String;
+  @Input('year') year: String = undefined;
   results: any;
   constructor (private rs: RequestService) {}
 
@@ -31,14 +32,27 @@ export class SearchResultsComponent {
 
   update() {
     //Query the server and sort the results.
-    this.rs.get('/search/'+ CURRENT_YEAR + "/" + this.query, (data) => {
-      this.results = data.results.sort((p1,p2) => {
-        if (p1.views == "None")
-          p1.views = 0;
-        if (p2.views == "None")
-          p2.views = 0;
-        return p2.views - p1.views;
-      })
-    }, undefined)
+    if(this.year == undefined || this.year == CURRENT_YEAR) {
+      this.rs.get('/search/'+ CURRENT_YEAR + "/" + this.query, (data) => {
+        this.results = data.results.sort((p1,p2) => {
+          if (p1.views == "None")
+            p1.views = 0;
+          if (p2.views == "None")
+            p2.views = 0;
+          return p2.views - p1.views;
+        })
+      }, undefined)
+    }
+    else {
+      this.rs.get('/search/'+ this.year + "/" + this.query, (data) => {
+        this.results = data.results.sort((p1,p2) => {
+          if (p1.views == "None")
+            p1.views = 0;
+          if (p2.views == "None")
+            p2.views = 0;
+          return p2.views - p1.views;
+        })
+      }, undefined)
+    }
   }
 }

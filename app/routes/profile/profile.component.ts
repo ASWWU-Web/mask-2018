@@ -24,6 +24,7 @@ import { CURRENT_YEAR, MEDIA_MD, DEFAULT_PHOTO } from '../../config';
 
 export class ProfileComponent {
     username: String;
+    year: String = CURRENT_YEAR;
     profile: ProfileModel;
     private subscription: Subscription;
 
@@ -34,7 +35,8 @@ export class ProfileComponent {
       (param: any) => {
         //param name specified in the app.module.ts file.
         this.username = param['username'];
-        this.requestService.get("/profile/"+ CURRENT_YEAR + "/" + this.username, (data) => this.profile = new ProfileModel(data), undefined);
+        this.year = param['year'];
+        this.requestService.get("/profile/"+ this.year + "/" + this.username, (data) => this.profile = new ProfileModel(data), undefined);
       });
     }
 

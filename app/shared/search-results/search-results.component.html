@@ -1,5 +1,5 @@
 <div *ngIf="query">
   <div *ngFor="let result of results">
-    <profile-sm [searchResult]='result'></profile-sm>
+    <profile-sm [searchResult]='result' [year]="year"></profile-sm>
   </div>
 </div>
