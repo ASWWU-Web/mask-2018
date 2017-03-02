@@ -1,9 +1,13 @@
 <a *ngIf="this.year == this.current_year" [routerLink]="['/profile', searchResult.username, this.year]">
-  <img class="rounded" src="{{getPhotoLink(searchResult.photo)}}" alt="{{searchResult.full_name}}" style="max-width: 200px; heigh:auto;"/>
+  <div class="circle">
+    <img class="img-fluid" src="{{getPhotoLink(searchResult.photo)}}" alt="{{searchResult.full_name}}"/>
+  </div>
   <h4>{{searchResult.full_name}}</h4>
 </a>
 
 <a *ngIf="this.year != this.current_year" [routerLink]="['/profile/', searchResult.username, (this.year) ? this.year: this.current_year]">
-  <img class="rounded" src="{{getPhotoLink(searchResult.photo)}}" alt="{{searchResult.full_name}}" style="max-width: 200px; heigh:auto;"/>
+  <div class="circle">
+    <img class="img-fluid" src="{{getPhotoLink(searchResult.photo)}}" alt="{{searchResult.full_name}}"/>
+  </div>
   <h4>{{searchResult.full_name}}</h4>
 </a>

@@ -13,27 +13,33 @@ import { CURRENT_YEAR } from '../../config';
 
 
 export class SearchResultsComponent {
-  @Input() query: String;
+  @Input() query: string;
   @Input('year') year: String = undefined;
-  results: any;
+
+  results: any[] = [];
+  shownResults: any[] = [];
+  shown: number = 0;
+
   constructor (private rs: RequestService) {}
 
   ngOnChanges() {
+    this.shownResults = [];
+    this.shown = 0;
     this.update();
   }
 
   ngOnInit() {
-    console.log("ngOnInit");
     if(!this.query){
       this.query = "";
     }
-    this.update();
   }
 
   update() {
     //Query the server and sort the results.
+    //TODO: This should use observables so that we can cancel the previouse request if it exists.
+    var query = this.query || "";
     if(this.year == undefined || this.year == CURRENT_YEAR) {
-      this.rs.get('/search/'+ CURRENT_YEAR + "/" + this.query, (data) => {
+      this.rs.get('/search/'+ CURRENT_YEAR + "/" + query , (data) => {
         this.results = data.results.sort((p1,p2) => {
           if (p1.views == "None")
             p1.views = 0;
@@ -41,10 +47,12 @@ export class SearchResultsComponent {
             p2.views = 0;
           return p2.views - p1.views;
         })
+        this.showMore();
       }, undefined)
+
     }
     else {
-      this.rs.get('/search/'+ this.year + "/" + this.query, (data) => {
+      this.rs.get('/search/'+ this.year + "/" + query, (data) => {
         this.results = data.results.sort((p1,p2) => {
           if (p1.views == "None")
             p1.views = 0;
@@ -52,7 +60,18 @@ export class SearchResultsComponent {
             p2.views = 0;
           return p2.views - p1.views;
         })
+        this.showMore();
       }, undefined)
+
     }
+  }
+
+  showMore() {
+    var cIndex = this.shown;
+    var nIndex = cIndex + 24;
+    this.shownResults = this.shownResults.concat(this.results.slice(cIndex,nIndex));
+    this.shown = nIndex;
+
+
   }
 }
