@@ -16,12 +16,14 @@ export const DisabledFields: string[] = ["wwuid", "username", "views", "updated_
 export const PrivateFields: string[] = DisabledFields.concat(["full_name", "gender", "privacy"]);
 
 export const FieldsInOrder: string[] = FieldSections.reduce((a, b) => { return a.concat(b); }).filter((a) => { return PrivateFields.indexOf(a) < 0; });
+export const FieldsForUpdating: string[] = FieldSections.reduce((a, b) => { return a.concat(b); });
+export const FieldsForSearching: string[] = FieldSections.reduce((a, b) => { return a.concat(b); }).filter((a) => { return a !=='privacy'; });
 
 // Fields that are multiple-choice rather than entering whatever value the user decides.
 export const SelectFields: Object = {
     relationship_status: ["","Attached","Available","Call me!","Content","Dating","Desperate","Engaged","Free for tea","Hermit","I'll pay","I'm a cheap date","In a relationship","In engineering...","In pursuit","Just ask me","Lonely","Looking","Married","Married to my books","Not available","Pick me! Pick me!","Senior, single, and ready to mingle","Single","Single but not set on it","Social life? what's that?","Socially inept","Taken","Undecided","Very available","Waiting","Waiting for my ring","Will date for coffee","Yoda hasn't told me yet"],
     personality: ["","ENFJ - Teacher","ENFP - Champion","ENTJ - Field Marshall","ENTP - Inventor","ESFJ - Provider","ESFP - Performer","ESTJ - Supervisor","ESTP - Promoter","INFJ - Counselor","INFP - Healer","INTJ - Mastermind","INTP - Architect","ISFJ - Protector","ISFP - Composer","ISTJ - Inspector","ISTP - Crafter","No personality"],
-    gender: ["","male","female"],
+    gender: ["","Male","Female"],
     class_standing: ["Freshman","Sophomore","Junior","Senior","Super Senior","Undecided"],
     privacy: ["Public", "Must Be Logged In", "Hidden"]
 };

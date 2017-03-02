@@ -4,7 +4,10 @@ import { FormsModule } from '@angular/forms';
 import { ActivatedRoute, Params } from '@angular/router';
 import { CURRENT_YEAR } from '../../config';
 
-import { FieldsInOrder, SelectFields, SearchableFields } from '../../shared/fields';
+import {
+    FieldsInOrder, SelectFields, SearchableFields,
+    FieldsForSearching
+} from '../../shared/fields';
 
 @Component({
     templateUrl: 'app/routes/super-search/super-search.component.html',
@@ -16,7 +19,7 @@ export class SuperSearchComponent implements OnInit {
     fields: string[] = [];
     query: string = '';
     year: string = CURRENT_YEAR;
-    fieldsInOrder: string[] = FieldsInOrder;
+    fieldsInOrder: string[] = FieldsForSearching;
     selectables: any = SelectFields;
     searchables: any = SearchableFields;
 
@@ -33,7 +36,7 @@ export class SuperSearchComponent implements OnInit {
         this.numOfQueries.push(0);
         this.numOfQueries.push(1);
         this.fields.push('year');
-        this.queries.push('16-17');
+        this.queries.push('1617');
     }
 
     updateQuery() {
@@ -51,5 +54,9 @@ export class SuperSearchComponent implements OnInit {
         }
         tempstring.slice(0,-1);
         this.query = tempstring;
+    }
+
+    removeField(search){
+        this.numOfQueries.splice(this.numOfQueries.indexOf(search),1); this.queries.splice(search,1); this.fields.splice(search,1);
     }
 }

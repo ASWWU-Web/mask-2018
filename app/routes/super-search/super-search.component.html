@@ -2,57 +2,36 @@
     <h2>Super Search</h2>
     <span class="fieldSelector" id="field0">Year</span>
     <select id='entry0' [(ngModel)]="queries[0]">
-        <option value="1617">16-17</option>
+        <option value="1617" selected="selected">16-17</option>
         <option value="1516">15-16</option>
         <option value="1415">14-15</option>
         <option value="1314">13-14</option>
         <option value="1213">12-13</option>
     </select>
-    <div *ngFor="let search of numOfQueries" id="searcP&zHtw!JQvtQYS5P#UP1h">
+    <div *ngFor="let search of numOfQueries" id="search">
         <span *ngIf="search!==0">
             <select class="fieldSelector" id="field{{search}}" [(ngModel)]='fields[search]'>
-                <option *ngFor="let field of fieldsInOrder">{{field}}</option>
+                <option *ngFor="let field of fieldsInOrder" value="{{field}}">{{field.split('_').join(' ')}}</option>
             </select>
-            <input id="entry{{search}}" [(ngModel)]='queries[search]'>
-            <button (click)="numOfQueries.splice(numOfQueries.indexOf(search),1); queries.splice(search,1); fields.splice(search,1)">Remove field</button>
+            <input *ngIf="!searchables.hasOwnProperty(fields[search]) && !selectables.hasOwnProperty(fields[search])" id="entry{{search}}" [(ngModel)]='queries[search]'>
+
+            <select *ngIf="selectables.hasOwnProperty(fields[search])" [(ngModel)]="queries[search]">
+                <option *ngFor="let options of selectables[fields[search]]" [value]="fields[search] == 'privacy' ? selectables[fields[search]].indexOf(options) : options">{{options}}</option>
+            </select>
+
+            <span *ngIf="searchables.hasOwnProperty(fields[search])">
+                <input  [attr.list]="fields[search]" [(ngModel)]="queries[search]">
+                <datalist id="{{fields[search]}}">
+                    <option *ngFor="let options of searchables[fields[search]]" [value]="options">{{options}}</option>
+                </datalist>
+            </span>
+            <!--TODO: put ryan's datalist component in here instead of basic html datalist-->
+
+            <button (click)="removeField(search)">x</button>
+            <!--TODO: Get dynamic fields working better-->
         </span>
     </div>
     <button (click)="numOfQueries.push(numOfQueries.length)">Add search field</button>
     <button (click)="updateQuery()">Search!</button>
     <search-results [query]='query' [year]='year'></search-results>
 </div>
-
-
-<!--<div class="container">-->
-    <!--<h2>Super Search</h2>-->
-    <!--<span class="fieldSelector" id="field0">Year</span>-->
-    <!--<select id='entry0' [(ngModel)]="queries[0]">-->
-        <!--<option value="16-17">16-17</option>-->
-        <!--<option value="15-16">15-16</option>-->
-        <!--<option value="14-15">14-15</option>-->
-        <!--<option value="13-14">13-14</option>-->
-        <!--<option value="12-13">12-13</option>-->
-    <!--</select>-->
-    <!--<div *ngFor="let search of numOfQueries" id="search">-->
-        <!--<span *ngIf="search!==0">-->
-            <!--<select class="fieldSelector" id="field{{search}}" [(ngModel)]='fields[search]'>-->
-                <!--<option *ngFor="let field of fieldsInOrder">{{field}}</option>-->
-            <!--</select>-->
-
-            <!--<input *ngIf="!searchables.hasOwnProperty(document.getElementById('field'+search).text)&&!selectables[document.getElementById('field'+search).text]&&!(document.getElementById('field'+search).text == 'department' || document.getElementById('field'+search).text == 'office' || document.getElementById('field'+search).text == 'office_hours' )" type="text" id="entry{{search}}" [(ngModel)]='queries[search]'>-->
-
-            <!--<div *ngIf="searchables.hasOwnProperty(document.getElementById('field'+search).text)">-->
-                <!--//TODO: Implement our datalist-->
-            <!--</div>-->
-
-            <!--<select *ngIf="selectables.hasOwnProperty(document.getElementById('field'+search).text)" [(ngModel)]="queries[search]">-->
-                <!--<option *ngFor="let options of selectables[document.getElementById('field'+search).text]" [value]="document.getElementById('field'+search).text == 'privacy' ? selectables[document.getElementById('field'+search).text].indexOf(options) : options">{{options}}</option>-->
-            <!--</select>-->
-
-            <!--<button (click)="numOfQueries.splice(numOfQueries.indexOf(search),1); queries.splice(search,1); fields.splice(search,1)">Remove field</button>-->
-        <!--</span>-->
-    <!--</div>-->
-    <!--<button (click)="numOfQueries.push(numOfQueries[numOfQueries.length-1]+1)">Add search field</button>-->
-    <!--<button (click)="updateQuery()">Search!</button>-->
-    <!--<search-results [query]='query'></search-results>-->
-<!--</div>-->
