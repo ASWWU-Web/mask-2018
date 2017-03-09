@@ -4,7 +4,7 @@
 import { Component, OnInit } from '@angular/core';
 import { RequestService } from '../../RequestService/requests';
 import { ProfileModel } from '../../shared/profile.model';
-import {FieldsInOrder, SelectFields, SearchableFields, FieldsForUpdating} from '../../shared/fields';
+import { FieldsInOrder, SelectFields, SearchableFields, FieldsForUpdating} from '../../shared/fields';
 import { CURRENT_YEAR, MEDIA_URI, DEFAULT_PHOTO } from '../../config';
 
 @Component({

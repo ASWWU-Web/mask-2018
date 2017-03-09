@@ -14,7 +14,7 @@ import {User} from "./user.model";
 @Injectable()
 export class RequestService {
   authUser: User;
-  private isLoggedIn: boolean;
+  private isLoggedIn: boolean = false;
 
   private setCurrentUser(user: any): void {
     if(user.hasOwnProperty("wwuid") && user.wwuid) {

@@ -11,7 +11,7 @@ import { ProfileComponent } from './routes/profile/profile.component'
 
 import { HomeComponent, SearchComponent, UpdateComponent, RandomComponent, BirthdayComponent, SuperSearchComponent } from './routes/routes';
 
-import { ProfileFullComponent, ProfileSmComponent, SearchResultsComponent, NavBarComponent } from './shared/shared';
+import { ProfileFullComponent, ProfileSmComponent, SearchResultsComponent, NavBarComponent, UserBubbleComponent } from './shared/shared';
 
 @NgModule({
   imports: [
@@ -70,7 +70,8 @@ import { ProfileFullComponent, ProfileSmComponent, SearchResultsComponent, NavBa
     RandomComponent,
     BirthdayComponent,
     SuperSearchComponent,
-    NavBarComponent
+    NavBarComponent,
+    UserBubbleComponent
   ],
   bootstrap: [ AppComponent ]
 })

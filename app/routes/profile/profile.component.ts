@@ -35,7 +35,7 @@ export class ProfileComponent {
       (param: any) => {
         //param name specified in the app.module.ts file.
         this.username = param['username'];
-        this.year = param['year'];
+        this.year = param['year'] ? param['year']: CURRENT_YEAR;
         this.requestService.get("/profile/"+ this.year + "/" + this.username, (data) => this.profile = new ProfileModel(data), undefined);
       });
     }
