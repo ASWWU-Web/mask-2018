@@ -1,37 +1,65 @@
 <div class="container">
     <h2>Super Search</h2>
     <span class="fieldSelector" id="field0">Year</span>
-    <select id='entry0' [(ngModel)]="queries[0]">
+    <select id='entry0' [(ngModel)]="year">
         <option value="1617" selected="selected">16-17</option>
         <option value="1516">15-16</option>
         <option value="1415">14-15</option>
         <option value="1314">13-14</option>
         <option value="1213">12-13</option>
     </select>
-    <div *ngFor="let search of numOfQueries" id="search">
-        <span *ngIf="search!==0">
-            <select class="fieldSelector" id="field{{search}}" [(ngModel)]='fields[search]'>
-                <option *ngFor="let field of fieldsInOrder" value="{{field}}">{{field.split('_').join(' ')}}</option>
-            </select>
-            <input *ngIf="!searchables.hasOwnProperty(fields[search]) && !selectables.hasOwnProperty(fields[search])" id="entry{{search}}" [(ngModel)]='queries[search]'>
 
-            <select *ngIf="selectables.hasOwnProperty(fields[search])" [(ngModel)]="queries[search]">
-                <option *ngFor="let options of selectables[fields[search]]" [value]="fields[search] == 'privacy' ? selectables[fields[search]].indexOf(options) : options">{{options}}</option>
-            </select>
 
-            <span *ngIf="searchables.hasOwnProperty(fields[search])">
-                <input  [attr.list]="fields[search]" [(ngModel)]="queries[search]">
-                <datalist id="{{fields[search]}}">
-                    <option *ngFor="let options of searchables[fields[search]]" [value]="options">{{options}}</option>
-                </datalist>
-            </span>
-            <!--TODO: put ryan's datalist component in here instead of basic html datalist-->
+    <div *ngFor="let pair of criteria; let i = index;" id="search">
+        <select class="fieldSelector" id="field{{i}}" [(ngModel)]='criteria[i][0]'>
+            <option *ngFor="let field of fieldsInOrder" value="{{field}}">{{field.split('_').join(' ')}}</option>
+        </select>
+        <input *ngIf="!searchables.hasOwnProperty(criteria[i][0]) && !selectables.hasOwnProperty(criteria[i][0])" id="entry{{i}}" [(ngModel)]='criteria[i][1]'>
 
-            <button (click)="removeField(search)">x</button>
-            <!--TODO: Get dynamic fields working better-->
+        <select *ngIf="selectables.hasOwnProperty(criteria[i][0])" [(ngModel)]="criteria[i][1]">
+            <option *ngFor="let options of selectables[criteria[i][0]]" [value]="criteria[i][0] == 'privacy' ? selectables[criteria[i][0]].indexOf(options) : options">{{options}}</option>
+        </select>
+
+        <span *ngIf="searchables.hasOwnProperty(criteria[i][0])">
+            <input  [attr.list]="criteria[i][0]" [(ngModel)]="criteria[i][1]">
+            <datalist id="{{criteria[i][0]}}">
+                <option *ngFor="let options of searchables[criteria[i][0]]" [value]="options">{{options}}</option>
+            </datalist>
         </span>
+        <!--TODO: put ryan's datalist component in here instead of basic html datalist-->
+
+        <button (click)="removeField(i)">x</button>
     </div>
-    <button (click)="numOfQueries.push(numOfQueries.length)">Add search field</button>
+    <button (click)="criteria.push(['', ''])">Add search field</button>
     <button (click)="updateQuery()">Search!</button>
     <search-results [query]='query' [year]='year'></search-results>
+
+
+
+    <!--<div *ngFor="let search of numOfQueries" id="search">-->
+        <!--<span *ngIf="search!==0">-->
+            <!--<select class="fieldSelector" id="field{{search}}" [(ngModel)]='fields[search]'>-->
+                <!--<option *ngFor="let field of fieldsInOrder" value="{{field}}">{{field.split('_').join(' ')}}</option>-->
+            <!--</select>-->
+            <!--<input *ngIf="!searchables.hasOwnProperty(fields[search]) && !selectables.hasOwnProperty(fields[search])" id="entry{{search}}" [(ngModel)]='queries[search]'>-->
+
+            <!--<select *ngIf="selectables.hasOwnProperty(fields[search])" [(ngModel)]="queries[search]">-->
+                <!--<option *ngFor="let options of selectables[fields[search]]" [value]="fields[search] == 'privacy' ? selectables[fields[search]].indexOf(options) : options">{{options}}</option>-->
+            <!--</select>-->
+
+            <!--<span *ngIf="searchables.hasOwnProperty(fields[search])">-->
+                <!--<input  [attr.list]="fields[search]" [(ngModel)]="queries[search]">-->
+                <!--<datalist id="{{fields[search]}}">-->
+                    <!--<option *ngFor="let options of searchables[fields[search]]" [value]="options">{{options}}</option>-->
+                <!--</datalist>-->
+            <!--</span>-->
+            <!--&lt;!&ndash;TODO: put ryan's datalist component in here instead of basic html datalist&ndash;&gt;-->
+
+            <!--<button (click)="removeField(search)">x</button>-->
+            <!--&lt;!&ndash;TODO: Get dynamic fields working better&ndash;&gt;-->
+        <!--</span>-->
+    <!--</div>-->
+    <!--<button (click)="numOfQueries.push(numOfQueries.length)">Add search field</button>-->
+    <!--<button (click)="updateQuery()">Search!</button>-->
+    <!--<search-results [query]='query' [year]='year'></search-results>-->
 </div>

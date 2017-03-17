@@ -25,30 +25,34 @@ import { MEDIA_SM, DEFAULT_PHOTO, CURRENT_YEAR } from '../../config';
                <a *ngIf="!isLoggedIn" class="btn btn-primary" [href]="'https://saml.aswwu.com/?redirectURI=/mask'+ router.url">Log in</a>
 `,
     styles: [`
-    .contain {
-        float: right;
-        clear: none;
-        width: 100px;
-    }
-`,`.btn-circle {
-    width: 50px;
-    height: 50px;
-    text-align: center;
-    padding: 0;
-    font-size: 24px;
-    line-height: 1.42;
-    border-radius: 25px;
-    border-color: aqua;
-    color: #336699;
-    cursor: pointer;
-}`,
+        .contain {
+            float: right;
+            clear: none;
+            width: 100px;
+        }`,
+        `.btn-circle {
+            width: 50px;
+            height: 50px;
+            text-align: center;
+            padding: 0;
+            font-size: 24px;
+            line-height: 1.42;
+            border-radius: 25px;
+            border-color: aqua;
+            color: #336699;
+            cursor: pointer;
+        }`,
         `
         #bubbleicon {
-        background-color: transparent;
-        border: none;
-        color: transparent;
-        }
-        `
+            background-color: transparent;
+            border: none;
+            color: transparent;
+        }`,
+        `.dropdown-menu {
+            width: 150px;
+            position: absolute;
+            left: -50px;
+        }`,
 //         `#bubble-popup{
 //     display: none;
 //     position: absolute;
@@ -56,7 +60,9 @@ import { MEDIA_SM, DEFAULT_PHOTO, CURRENT_YEAR } from '../../config';
 //     border: 1px solid #999999;
 //     padding: 5px;
 //     right: 50px;
-// }`
+// }`,
+
+
     ],
     providers: [
         RequestService,

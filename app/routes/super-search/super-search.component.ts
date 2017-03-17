@@ -14,9 +14,7 @@ import {
 })
 
 export class SuperSearchComponent implements OnInit {
-    numOfQueries: number[] = [];
-    queries: string[] = [];
-    fields: string[] = [];
+    criteria: string[][] = [];
     query: string = '';
     year: string = CURRENT_YEAR;
     fieldsInOrder: string[] = FieldsForSearching;
@@ -33,30 +31,30 @@ export class SuperSearchComponent implements OnInit {
             (param: any) => {
                 this.query = param['query'];
             });
-        this.numOfQueries.push(0);
-        this.numOfQueries.push(1);
-        this.fields.push('year');
-        this.queries.push('1617');
     }
 
     updateQuery() {
         let tempstring = '';
-        let tempindex = 0;
-        for(let value of this.queries) {
-            let field = this.fields[tempindex];
-            if(field !== 'year' && field != ''){
-                tempstring += this.fields[tempindex] + "=" + value + ";";
+        for(let value of this.criteria) {
+            if(value[0] !== 'year' && value[1] != ''){
+                tempstring += value[0] + "=" + value[1] + ";";
             }
-            else if(field == 'year') {
-                this.year = value;
+            else if(value[0] == 'year') {
+                this.year = value[1];
             }
-            tempindex++;
         }
-        tempstring.slice(0,-1);
+        tempstring.slice(0, -1);
         this.query = tempstring;
     }
 
-    removeField(search){
-        this.numOfQueries.splice(this.numOfQueries.indexOf(search),1); this.queries.splice(search,1); this.fields.splice(search,1);
+    removeField(i){
+        this.criteria.splice(i, 1);
+        // let i = 0;
+        // for(let pair of this.criteria) {
+        //     if(pair[1].indexOf(search)){
+        //         this.criteria.splice(i, 1);
+        //     }
+        //     i++;
+        // }
     }
 }
