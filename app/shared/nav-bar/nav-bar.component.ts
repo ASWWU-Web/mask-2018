@@ -1,4 +1,5 @@
 import { Component, Input } from '@angular/core';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { UserBubbleComponent } from '../shared';
 
 @Component({
