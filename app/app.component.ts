@@ -4,7 +4,7 @@ import {Component, NgModule} from '@angular/core';
   selector: 'my-app',
   template:  `
   	<nav-bar></nav-bar>
-    <h1>ASWWU Mask</h1>
+    <!-- <h1>ASWWU Mask</h1> -->
     <router-outlet></router-outlet>
   `
 })
