@@ -28,25 +28,46 @@ import { MEDIA_SM, DEFAULT_PHOTO, CURRENT_YEAR } from '../../config';
         .contain {
             float: right;
             clear: none;
-            width: 100px;
-        }`,
-        `.btn-circle {
             width: 50px;
-            height: 50px;
+        }`,
+        // image
+        `.btn-circle {
+            /*width: 50px;*/
+            /*height: 50px;*/
+            /*text-align: center;*/
+            /*padding: 0;*/
+            /*font-size: 24px;*/
+            /*line-height: 1.42;*/
+            /*border-radius: 25px;*/
+            /*border-color: aqua;*/
+            /*color: #336699;*/
+            /*cursor: pointer;*/
+            width: 50px;
+            height: auto;
             text-align: center;
             padding: 0;
             font-size: 24px;
             line-height: 1.42;
-            border-radius: 25px;
-            border-color: aqua;
+            border: none;
             color: #336699;
             cursor: pointer;
+            
         }`,
-        `
-        #bubbleicon {
+        // container
+        `#bubbleicon {
+            /*background-color: transparent;*/
+            /*border: none;*/
+            /*color: transparent;*/
             background-color: transparent;
             border: none;
             color: transparent;
+            z-index: 1;
+            border-radius: 50%;
+            border: none;
+            padding: 0;
+            overflow: hidden;
+            height: 50px;
+            width: 50px;
         }`,
         `.dropdown-menu {
             width: 150px;
