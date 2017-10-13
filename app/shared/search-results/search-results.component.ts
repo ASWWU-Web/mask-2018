@@ -22,7 +22,7 @@ export class SearchResultsComponent {
 
   constructor (private rs: RequestService) {}
 
-  ngOnChanges() {
+  ngOnChanges() { 
     this.shownResults = [];
     this.shown = 0;
     this.update();
