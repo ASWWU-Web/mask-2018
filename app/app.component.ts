@@ -5,9 +5,9 @@ import { Location } from "@angular/common";
 @Component({
   selector: 'my-app',
   template:  `
-  	<nav-bar></nav-bar>
-    <router-outlet></router-outlet>
-    <div id="background" [class.hash]="backgroundHash"></div>
+      <nav-bar></nav-bar>
+      <router-outlet></router-outlet>
+      <div id="background" [class.fade1]="fade == 1" [class.fade2]="fade == 2" [class.fade3]="fade == 3" [class.fade4]="fade == 4"></div>
   `,
     styles: ['#background {\n' +
     '  position: fixed;\n' +
@@ -26,7 +26,25 @@ import { Location } from "@angular/common";
     '  -o-transition: -o-filter 300ms;\n' +
     '  transition: -webkit-filter 500ms, filter 500ms;' +
     '}\n' +
-    '#background.hash {\n' +
+    '#background.fade4 {\n' +
+    '  -webkit-filter: saturate(0%) brightness(100%);\n' +
+    '  -moz-filter: saturate(0%) brightness(100%);\n' +
+    '  -o-filter: saturate(0%) brightness(100%);\n' +
+    '  filter: saturate(0%) brightness(100%);\n' +
+    '}\n' +
+    '#background.fade3 {\n' +
+    '  -webkit-filter: saturate(0%) brightness(70%);\n' +
+    '  -moz-filter: saturate(0%) brightness(70%);\n' +
+    '  -o-filter: saturate(0%) brightness(70%);\n' +
+    '  filter: saturate(0%) brightness(70%);\n' +
+    '}\n' +
+    '#background.fade2 {\n' +
+    '  -webkit-filter: saturate(0%) brightness(40%);\n' +
+    '  -moz-filter: saturate(0%) brightness(40%);\n' +
+    '  -o-filter: saturate(0%) brightness(40%);\n' +
+    '  filter: saturate(0%) brightness(40%);\n' +
+    '}\n' +
+    '#background.fade1 {\n' +
     '  -webkit-filter: saturate(0%) brightness(10%);\n' +
     '  -moz-filter: saturate(0%) brightness(10%);\n' +
     '  -o-filter: saturate(0%) brightness(10%);\n' +
@@ -35,15 +53,17 @@ import { Location } from "@angular/common";
 })
 
 export class AppComponent {
-  backgroundHash: boolean = true;
+  fade: number = 1;
 
   constructor(
       private loc: Location,
       private router: Router,
   ) {
       this.router.events.subscribe(() => {
+        this.fade = 3;
+
         // fade in/out background for profiles
-        this.backgroundHash = this.loc.path().search('profile') != -1;
+        if(this.loc.path().search('profile') != -1) this.fade = 1;
     });
   }
 }
