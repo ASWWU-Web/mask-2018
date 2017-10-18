@@ -4,6 +4,9 @@
   overflow: hidden;
   border-radius: 50%;
 }
+.circle img {
+  width:100%;
+}
 a {
   /* TODO: Change to white when background is addded */
   color: grey;
