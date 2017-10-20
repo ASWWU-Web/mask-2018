@@ -60,7 +60,7 @@ export class AppComponent {
       private router: Router,
   ) {
       this.router.events.subscribe(() => {
-        this.fade = 3;
+        this.fade = 2;
 
         // fade in/out background for profiles
         if(this.loc.path().search('profile') != -1) this.fade = 1;

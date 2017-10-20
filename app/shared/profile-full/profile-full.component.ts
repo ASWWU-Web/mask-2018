@@ -18,7 +18,7 @@ export class ProfileFullComponent {
 
 	displayKey(key: string): string { return key.replace(/_/g, ' '); }
 
-	getPhotoLink(url: string){
+	getPhotoLink(url: string) {
 		if(url && url != "None"){
 			return MEDIA_MD + "/" + url;
 		} else {
