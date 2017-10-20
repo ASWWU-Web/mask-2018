@@ -1,13 +1,15 @@
-<div class="row">
-  <div *ngFor="let result of shownResults" class="columns col-6 col-md-4 col-lg-3">
-    <profile-sm [searchResult]='result' [year]="year"></profile-sm>
+<div class="container">
+  <div class="row">
+    <div *ngFor="let result of shownResults" class="columns col-lg-3">
+      <profile-sm [searchResult]='result' [year]="year" class=""></profile-sm>
+    </div>
   </div>
-</div>
-<div style="padding-bottom:50px;" class="row">
-  <div *ngIf="!(shown >= results.length)" class="col d-flex justify-content-center">
-    <button (click)="showMore()" class="btn btn-primary">Show More</button>
-  </div>
-  <div *ngIf="results.length == 0" class="col d-flex justify-content-center">
-    No results found...  <a [routerLink]="['/search/']">Super Search?</a>
+  <div style="padding-bottom:50px;" class="row">
+    <div *ngIf="!(shown >= results.length)" class="col d-flex justify-content-center">
+      <button (click)="showMore()" class="btn btn-primary">Show More</button>
+    </div>
+    <div *ngIf="results.length == 0" class="col d-flex justify-content-center">
+      No results found...  <a [routerLink]="['/search/']">Super Search?</a>
+    </div>
   </div>
 </div>
