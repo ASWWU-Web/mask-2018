@@ -2,7 +2,7 @@
     padding:0px;
 }
 
-#mask-search-query {
+.mask-search-query {
     font-family: 'Raleway', sans-serif;
     color: white;
     border-radius: 0;
@@ -16,12 +16,12 @@
     max-width: 400px;
 }
 
-#mask-search-query:focus {
+.mask-search-query:focus {
     background-color: white;
     color: grey;
 }
 
-#mask-search-query::-webkit-input-placeholder{
+.mask-search-query::-webkit-input-placeholder{
     color: white;
 } /* add this for other browsers */
 
