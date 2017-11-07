@@ -16,6 +16,8 @@ import { CURRENT_YEAR } from '../../config';
 export class SearchResultsComponent {
   @Input() query: string;
   @Input('year') year: String = undefined;
+  @Input() noResultsPrompt: string;
+  @Input() noResultsJust: string = "center";
 
   results: any[] = [];
   shownResults: any[] = [];
