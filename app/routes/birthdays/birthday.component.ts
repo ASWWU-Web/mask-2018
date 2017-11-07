@@ -6,11 +6,11 @@ import { ActivatedRoute } from '@angular/router';
     template:  `
         <div class="container">
             <h2>Today's Birthdays</h2>
-            <search-results [query]='queryToday'></search-results>
+            <search-results [query]='queryToday' [noResultsPrompt]='"None!"' [noResultsJust]='"left"'></search-results>
             <h2>Tomorrow's Birthdays</h2>
-            <search-results [query]='queryTomorrow'></search-results>
+            <search-results [query]='queryTomorrow' [noResultsPrompt]='"None!"' [noResultsJust]='"left"'></search-results>
             <h2>This Week's Birthdays</h2>
-            <search-results [query]='queryWeek'></search-results>
+            <search-results [query]='queryWeek' [noResultsPrompt]='"None1"' [noResultsJust]='"left"'></search-results>
         </div>
     `,
 })
@@ -26,6 +26,8 @@ export class BirthdayComponent implements OnInit {
     ngOnInit() {
         // today's birthdays
         let d = new Date();
+        d.setMonth(0);
+        d.setDate(1);
         this.queryToday = "birthday=" + ("0"+(d.getMonth()+1)).substr(-2)+"-"+("0"+d.getDate()).substr(-2);
 
         // tomorrow's birthdays
