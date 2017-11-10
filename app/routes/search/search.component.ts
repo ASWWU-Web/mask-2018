@@ -5,16 +5,21 @@ import { ActivatedRoute, Params } from '@angular/router';
 
 import { SearchResultsComponent } from '../../shared/shared';
 
+// @Component({
+//   template:  `
+    // <div class="container">
+    //   <h2>Search</h2>
+    //   <!--Two way data binding is cool but not very efficient in this case. -->
+    //   <input [(ngModel)]='query'>
+    //   <search-results [query]='query'></search-results>
+    // </div>
+//   `,
+// })
+
 @Component({
-  template:  `
-    <div class="container">
-      <h2>Search</h2>
-      <!--Two way data binding is cool but not very efficient in this case. -->
-      <input [(ngModel)]='query'>
-      <search-results [query]='query'></search-results>
-    </div>
-  `,
-})
+  templateUrl: 'app/routes/search/search.component.html',
+  styleUrls: ['app/routes/search/search.component.css'],
+}) 
 
 export class SearchComponent implements OnInit {
   query: String;

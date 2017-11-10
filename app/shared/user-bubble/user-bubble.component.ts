@@ -16,6 +16,7 @@ import { MEDIA_SM, DEFAULT_PHOTO, CURRENT_YEAR } from '../../config';
                             <img *ngIf="!(profile?.photo == 'images/mask_unknown.png' || profile?.photo == 'None' || !profile?.photo)" (click)="displayUserOptions()" class="btn btn-default btn-circle" src="{{getPhotoLink(profile.photo)}}">
                         </button>
                         <div class="dropdown-menu" aria-labelledby="bubbleicon">
+                            <button class="btn btn-default dropdown-item" [routerLink]="['/search/']">Super Search</button>
                             <button class="btn btn-default dropdown-item" [routerLink]="['/profile/'+profile?.username]">View Profile</button>
                             <button class="btn btn-default dropdown-item" [routerLink]="['/update']">Update Profile</button>
                             <button class="btn btn-default dropdown-item" (click)="logout()" [routerLink]="'/'">Log Out</button>

@@ -8,6 +8,7 @@ import { CURRENT_YEAR } from '../../config';
 @Component({
   selector: "search-results",
   templateUrl: "app/shared/search-results/search-results.component.html",
+  styleUrls: ["app/shared/search-results/search-results.component.css"],
   providers: [ RequestService ],
 })
 

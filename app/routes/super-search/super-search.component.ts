@@ -11,6 +11,7 @@ import {
 
 @Component({
     templateUrl: 'app/routes/super-search/super-search.component.html',
+    styleUrls: ['app/routes/super-search/super-search.component.css'],
 })
 
 export class SuperSearchComponent implements OnInit {
