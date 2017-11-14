@@ -5,7 +5,8 @@ import { Injectable } from '@angular/core';
 
 import { Headers, Http, RequestOptions } from '@angular/http';
 
-import 'rxjs/add/operator/toPromise';
+// import 'rxjs/add/operator/toPromise';
+import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/map';
 
 import { SERVER_URL, COOKIE_DOMAIN } from '../config';
@@ -109,6 +110,17 @@ export class RequestService {
       );
   }
 
+  getWithSub(uri: string, afterRequest, catchError): Observable<any> {
+    let req = this.createRequest(uri);
+    this.verify();
+    var subscription = this.http.get(req.url,req.options);
+    subscription.map(res => res.json());
+    subscription.subscribe(
+        data => afterRequest(data),
+        err => (catchError ? catchError(err) : console.error(err))
+      );
+    return(subscription);
+  }
   /*
   * Function to view whether or not the user is logged in.
   * Not sure if needed.
