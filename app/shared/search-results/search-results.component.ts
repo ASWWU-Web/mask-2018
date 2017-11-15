@@ -6,6 +6,7 @@ import { Observable } from 'rxjs/Observable';
 import { RequestService } from '../../RequestService/request.service';
 import { ProfileSmComponent } from '../shared';
 import { CURRENT_YEAR } from '../../config';
+import {Subscription} from "rxjs/Subscription";
 
 @Component({
   selector: "search-results",
@@ -24,7 +25,7 @@ export class SearchResultsComponent {
   results: any[] = [];
   shownResults: any[] = [];
   shown: number = 0;
-  sub: Observable<any> = null;
+  sub: Subscription = null;
 
   constructor (private rs: RequestService) {}
 
@@ -42,7 +43,9 @@ export class SearchResultsComponent {
 
   update() {
     //Query the server and sort the results.
-    //TODO: This should use observables so that we can cancel the previouse request if it exists.
+    if(this.sub != null) {
+      this.sub.unsubscribe();
+    }
     var query = this.query || "";
     if(this.year == undefined || this.year == CURRENT_YEAR) {
       this.sub = this.rs.getWithSub('/search/'+ CURRENT_YEAR + "/" + query , (data) => {
@@ -52,7 +55,7 @@ export class SearchResultsComponent {
           if (p2.views == "None")
             p2.views = 0;
           return p2.views - p1.views;
-        })
+        });
         this.showMore();
       }, undefined)
 

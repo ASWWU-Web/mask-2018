@@ -11,6 +11,7 @@ import 'rxjs/add/operator/map';
 
 import { SERVER_URL, COOKIE_DOMAIN } from '../config';
 import {User} from "./user.model";
+import {Subscription} from "rxjs/Subscription";
 
 @Injectable()
 export class RequestService {
@@ -110,12 +111,12 @@ export class RequestService {
       );
   }
 
-  getWithSub(uri: string, afterRequest, catchError): Observable<any> {
+  getWithSub(uri: string, afterRequest, catchError): Subscription {
     let req = this.createRequest(uri);
     this.verify();
-    var subscription = this.http.get(req.url,req.options);
-    subscription.map(res => res.json());
-    subscription.subscribe(
+    let subscription = this.http.get(req.url,req.options)
+    .map(res => res.json())
+    .subscribe(
         data => afterRequest(data),
         err => (catchError ? catchError(err) : console.error(err))
       );
