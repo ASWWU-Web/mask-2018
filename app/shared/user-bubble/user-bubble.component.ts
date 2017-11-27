@@ -15,10 +15,11 @@ import { MEDIA_SM, DEFAULT_PHOTO, CURRENT_YEAR } from '../../config';
                             <div *ngIf="(profile?.photo == 'images/mask_unknown.png' || profile?.photo == 'None' || !profile?.photo)" (click)="displayUserOptions()" class="btn btn-default btn-circle">{{profile?.username.charAt(0).toUpperCase()}}</div>
                             <img *ngIf="!(profile?.photo == 'images/mask_unknown.png' || profile?.photo == 'None' || !profile?.photo)" (click)="displayUserOptions()" class="btn btn-default btn-circle" src="{{getPhotoLink(profile.photo)}}">
                         </button>
-                        <div class="dropdown-menu" aria-labelledby="bubbleicon">
+                        <div class="dropdown-menu dropdown-menu-right" aria-labelledby="bubbleicon">
                             <button class="btn btn-default dropdown-item" [routerLink]="['/search/']">Super Search</button>
                             <button class="btn btn-default dropdown-item" [routerLink]="['/profile/'+profile?.username]">View Profile</button>
                             <button class="btn btn-default dropdown-item" [routerLink]="['/update']">Update Profile</button>
+                            <div class="dropdown-divider"></div>
                             <button class="btn btn-default dropdown-item" (click)="logout()" [routerLink]="'/'">Log Out</button>
                         </div>
                     </div>
@@ -73,7 +74,7 @@ import { MEDIA_SM, DEFAULT_PHOTO, CURRENT_YEAR } from '../../config';
         `.dropdown-menu {
             width: 150px;
             position: absolute;
-            left: -50px;
+            /*left: -50px;*/
         }`,
 //         `#bubble-popup{
 //     display: none;
