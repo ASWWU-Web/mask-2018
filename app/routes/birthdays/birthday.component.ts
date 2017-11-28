@@ -5,11 +5,11 @@ import { ActivatedRoute } from '@angular/router';
 @Component({
     template:  `
         <div class="container">
-            <h2 class="text-white" style="text-shadow: 1px 1px black;">Today's Birthdays</h2>
+            <h2 class="text-white">Today's Birthdays</h2>
             <search-results [query]='queryToday' [noResultsPrompt]='"No birthdays!"' [noResultsJust]='"left"'></search-results>
-            <h2 class="text-white" style="text-shadow: 1px 1px black;">Tomorrow's Birthdays</h2>
+            <h2 class="text-white">Tomorrow's Birthdays</h2>
             <search-results [query]='queryTomorrow' [noResultsPrompt]='"No birthdays!"' [noResultsJust]='"left"'></search-results>
-            <h2 class="text-white" style="text-shadow: 1px 1px black;">This Week's Birthdays</h2>
+            <h2 class="text-white">This Week's Birthdays</h2>
             <search-results [query]='queryWeek' [noResultsPrompt]='"No birthdays!"' [noResultsJust]='"left"'></search-results>
         </div>
     `,

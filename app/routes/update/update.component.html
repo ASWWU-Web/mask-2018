@@ -1,6 +1,6 @@
 <div *ngIf="requestService.isLoggedOn()" class="row">
     <div  class="col-md-6">
-        <h1 class="text-shadow text-white">Profile Info</h1>
+        <h1 class="text-white">Profile Info</h1>
         <hr>
         <div>
             <br>
@@ -28,11 +28,11 @@
             </div>
         </div>
         <div>
-            <h2><button id="Submit" (click)="UploadProfile()">Update Profile</button></h2>
+            <h2><button class="btn btn-primary" id="Submit" (click)="UploadProfile()">Update Profile</button></h2>
         </div>
     </div>
     <div class="col-md-6" id="preview">
-        <h1 class="text-shadow text-white">Profile Preview</h1>
+        <h1 class="text-white">Profile Preview</h1>
         <profile-full [profile]="fullProfile"></profile-full>
     </div>
 </div>
