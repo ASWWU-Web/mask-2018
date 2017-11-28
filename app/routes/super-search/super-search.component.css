@@ -46,7 +46,8 @@
 @media only screen and (min-aspect-ratio:3/4) and (min-height:700px) {
     /* for desktop */
     #search-area {
-        height: 50%;
+        min-height: 50%;
+        height: auto;
     }
     #results{
         /* visibility: hidden; */
@@ -67,3 +68,14 @@
     align-items: center;
 }
 
+.search-criteria {
+    padding-top: 14.5%;
+    padding-bottom: 6%;
+    padding-right: 12%;
+    padding-left: 12%;
+}
+
+.form-control {
+    margin-right: .5%;
+    margin-left: .5%;
+}
