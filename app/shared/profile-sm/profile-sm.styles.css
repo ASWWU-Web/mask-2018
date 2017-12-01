@@ -17,3 +17,7 @@ a {
 .text-shadow {
   text-shadow: 1px 1px black;
 }
+
+#full-name {
+  margin-bottom: 40px;
+}

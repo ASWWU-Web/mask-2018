@@ -64,6 +64,8 @@ export class AppComponent {
 
         // fade in/out background for profiles
         if(this.loc.path().search('profile') != -1) this.fade = 1;
+        else if(this.loc.path().search('update') != -1) this.fade = 1;
+        else if(this.loc.path().search('random') != -1) this.fade = 1;
     });
   }
 }
