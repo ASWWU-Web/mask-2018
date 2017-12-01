@@ -10,9 +10,11 @@ import { CURRENT_YEAR } from '../../config';
 @Component({
     template:  `
     <div class="container">
-      <h2 class="text-white">Random</h2>
+      <h2 class="text-white" style="margin-top: 40px">Random</h2>
       <button (click)="getRandom()" class="btn btn-primary">Get new random profile</button>
-      <profile-full [profile]='selectedProfile'></profile-full>
+      <div style="margin-top: 40px">
+          <profile-full [profile]='selectedProfile'></profile-full>
+      </div>
     </div>
   `,
     providers: [

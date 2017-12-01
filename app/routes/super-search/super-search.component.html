@@ -8,7 +8,7 @@
             <br>
             <div class="align-items-center">
                 <div class="text-center">
-                    <span class="fieldSelector" id="field0">Year</span>
+                    <span class="fieldSelector year-selector" id="field0">Year</span>
                     <select id='entry0' [(ngModel)]="year">
                         <option value="1617" selected="selected">2016-2017</option>
                         <option value="1516">2015-2016</option>
@@ -39,40 +39,10 @@
 
                     <button class="form-control btn btn-secondary col-sm" (click)="removeField(i)">Remove</button>
                 </div>
-                <button class="btn btn-primary" (click)="criteria.push(['', ''])">Add search field</button>
+                <button class="btn btn-primary search-button" (click)="criteria.push(['', ''])">Add search field</button>
                 <button class="btn btn-primary search-button" (click)="updateQuery()">Search!</button>
             </div>
         </div>
     </div>
-
     <search-results [query]='query' [year]='year'></search-results>
-
-
-
-    <!--<div *ngFor="let search of numOfQueries" id="search">-->
-        <!--<span *ngIf="search!==0">-->
-            <!--<select class="fieldSelector" id="field{{search}}" [(ngModel)]='fields[search]'>-->
-                <!--<option *ngFor="let field of fieldsInOrder" value="{{field}}">{{field.split('_').join(' ')}}</option>-->
-            <!--</select>-->
-            <!--<input *ngIf="!searchables.hasOwnProperty(fields[search]) && !selectables.hasOwnProperty(fields[search])" id="entry{{search}}" [(ngModel)]='queries[search]'>-->
-
-            <!--<select *ngIf="selectables.hasOwnProperty(fields[search])" [(ngModel)]="queries[search]">-->
-                <!--<option *ngFor="let options of selectables[fields[search]]" [value]="fields[search] == 'privacy' ? selectables[fields[search]].indexOf(options) : options">{{options}}</option>-->
-            <!--</select>-->
-
-            <!--<span *ngIf="searchables.hasOwnProperty(fields[search])">-->
-                <!--<input  [attr.list]="fields[search]" [(ngModel)]="queries[search]">-->
-                <!--<datalist id="{{fields[search]}}">-->
-                    <!--<option *ngFor="let options of searchables[fields[search]]" [value]="options">{{options}}</option>-->
-                <!--</datalist>-->
-            <!--</span>-->
-            <!--&lt;!&ndash;TODO: put ryan's datalist component in here instead of basic html datalist&ndash;&gt;-->
-
-            <!--<button (click)="removeField(search)">x</button>-->
-            <!--&lt;!&ndash;TODO: Get dynamic fields working better&ndash;&gt;-->
-        <!--</span>-->
-    <!--</div>-->
-    <!--<button (click)="numOfQueries.push(numOfQueries.length)">Add search field</button>-->
-    <!--<button (click)="updateQuery()">Search!</button>-->
-    <!--<search-results [query]='query' [year]='year'></search-results>-->
 </div>
