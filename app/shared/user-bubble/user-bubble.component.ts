@@ -15,9 +15,15 @@ import { MEDIA_SM, DEFAULT_PHOTO, CURRENT_YEAR } from '../../config';
                             <div *ngIf="(profile?.photo == 'images/mask_unknown.png' || profile?.photo == 'None' || !profile?.photo)" (click)="displayUserOptions()" class="btn btn-default btn-circle">{{profile?.username.charAt(0).toUpperCase()}}</div>
                             <img *ngIf="!(profile?.photo == 'images/mask_unknown.png' || profile?.photo == 'None' || !profile?.photo)" (click)="displayUserOptions()" class="btn btn-default btn-circle" src="{{getPhotoLink(profile.photo)}}">
                         </button>
-                        <div class="dropdown-menu" aria-labelledby="bubbleicon">
+                        <div class="dropdown-menu dropdown-menu-right" aria-labelledby="bubbleicon">
+                            <button class="btn btn-default dropdown-item" [routerLink]="['']">Search</button>
+                            <button class="btn btn-default dropdown-item" [routerLink]="['/search/']">Super Search</button>
+                            <button class="btn btn-default dropdown-item" [routerLink]="['/random']">Random Profile</button>
+                            <button class="btn btn-default dropdown-item" [routerLink]="['/birthdays']">Birthdays</button>
+                            <div class="dropdown-divider"></div>
                             <button class="btn btn-default dropdown-item" [routerLink]="['/profile/'+profile?.username]">View Profile</button>
                             <button class="btn btn-default dropdown-item" [routerLink]="['/update']">Update Profile</button>
+                            <div class="dropdown-divider"></div>
                             <button class="btn btn-default dropdown-item" (click)="logout()" [routerLink]="'/'">Log Out</button>
                         </div>
                     </div>
@@ -28,30 +34,51 @@ import { MEDIA_SM, DEFAULT_PHOTO, CURRENT_YEAR } from '../../config';
         .contain {
             float: right;
             clear: none;
-            width: 100px;
-        }`,
-        `.btn-circle {
             width: 50px;
-            height: 50px;
+        }`,
+        // image
+        `.btn-circle {
+            /*width: 50px;*/
+            /*height: 50px;*/
+            /*text-align: center;*/
+            /*padding: 0;*/
+            /*font-size: 24px;*/
+            /*line-height: 1.42;*/
+            /*border-radius: 25px;*/
+            /*border-color: aqua;*/
+            /*color: #336699;*/
+            /*cursor: pointer;*/
+            width: 50px;
+            height: auto;
             text-align: center;
             padding: 0;
             font-size: 24px;
             line-height: 1.42;
-            border-radius: 25px;
-            border-color: aqua;
+            border: none;
             color: #336699;
             cursor: pointer;
+            
         }`,
-        `
-        #bubbleicon {
+        // container
+        `#bubbleicon {
+            /*background-color: transparent;*/
+            /*border: none;*/
+            /*color: transparent;*/
             background-color: transparent;
             border: none;
             color: transparent;
+            z-index: 1;
+            border-radius: 50%;
+            border: none;
+            padding: 0;
+            overflow: hidden;
+            height: 50px;
+            width: 50px;
         }`,
         `.dropdown-menu {
             width: 150px;
             position: absolute;
-            left: -50px;
+            /*left: -50px;*/
         }`,
 //         `#bubble-popup{
 //     display: none;

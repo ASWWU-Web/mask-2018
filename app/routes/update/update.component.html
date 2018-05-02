@@ -1,6 +1,6 @@
 <div *ngIf="requestService.isLoggedOn()" class="row">
     <div  class="col-md-6">
-        <h1>{{profile.username}}</h1>
+        <h1 class="text-white">Profile Info</h1>
         <hr>
         <div>
             <br>
@@ -9,29 +9,30 @@
             </div>
         </div>
 
-        <div *ngFor="let field of fields;">
-            <div *ngIf="!(field == 'department' || field == 'office' || field == 'office_hours' )">{{field.split('_').join(' ')}}</div>
+        <div class="row">
+            <div *ngFor="let field of fields;" class="col-md-6 pb-2 pt-2">
+                <div *ngIf="!(field == 'department' || field == 'office' || field == 'office_hours' )" class="text-white text-capitalize">{{field.split('_').join(' ')}}</div>
 
-            <input *ngIf="!searchables.hasOwnProperty(field)&&!selectables[field]&&!(field == 'department' || field == 'office' || field == 'office_hours' )" type="text" class="form-control" id="{{field+'input'}}" [(ngModel)]="fullProfile[field]">
+                <input *ngIf="!searchables.hasOwnProperty(field)&&!selectables[field]&&!(field == 'department' || field == 'office' || field == 'office_hours' )" type="text" class="form-control" id="{{field+'input'}}" [(ngModel)]="fullProfile[field]">
 
-            <div *ngIf="searchables.hasOwnProperty(field)">
-                <input  [attr.list]="field" [(ngModel)]="fullProfile[field]">
-                <datalist id="{{field}}">
-                    <option *ngFor="let options of searchables[field]" [value]="options">{{options}}</option>
-                </datalist>
+                <div *ngIf="searchables.hasOwnProperty(field)">
+                    <input  [attr.list]="field" [(ngModel)]="fullProfile[field]">
+                    <datalist id="{{field}}">
+                        <option *ngFor="let options of searchables[field]" [value]="options">{{options}}</option>
+                    </datalist>
+                </div>
+
+                <select *ngIf="selectables.hasOwnProperty(field)" [(ngModel)]="fullProfile[field]">
+                    <option *ngFor="let options of selectables[field]" [value]="field == 'privacy' ? selectables[field].indexOf(options) : options">{{options}}</option>
+                </select>
             </div>
-
-            <select *ngIf="selectables.hasOwnProperty(field)" [(ngModel)]="fullProfile[field]">
-                <option *ngFor="let options of selectables[field]" [value]="field == 'privacy' ? selectables[field].indexOf(options) : options">{{options}}</option>
-            </select>
         </div>
-
         <div>
-            <h2><button id="Submit" (click)="UploadProfile()">Update Profile</button></h2>
+            <h2><button class="btn btn-primary" id="Submit" (click)="UploadProfile()">Update Profile</button></h2>
         </div>
     </div>
     <div class="col-md-6" id="preview">
-        <h1>Profile Preview:</h1>
+        <h1 class="text-white">Profile Preview</h1>
         <profile-full [profile]="fullProfile"></profile-full>
     </div>
 </div>

@@ -1,13 +1,17 @@
 import { Component, Input, OnChanges, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
+import { Observable } from 'rxjs/Observable';
+
 import { RequestService } from '../../RequestService/request.service';
 import { ProfileSmComponent } from '../shared';
 import { CURRENT_YEAR } from '../../config';
+import {Subscription} from "rxjs/Subscription";
 
 @Component({
   selector: "search-results",
   templateUrl: "app/shared/search-results/search-results.component.html",
+  styleUrls: ["app/shared/search-results/search-results.component.css"],
   providers: [ RequestService ],
 })
 
@@ -15,10 +19,13 @@ import { CURRENT_YEAR } from '../../config';
 export class SearchResultsComponent {
   @Input() query: string;
   @Input('year') year: String = undefined;
+  @Input() noResultsPrompt: string;
+  @Input() noResultsJust: string = "center";
 
   results: any[] = [];
   shownResults: any[] = [];
   shown: number = 0;
+  sub: Subscription = null;
 
   constructor (private rs: RequestService) {}
 
@@ -36,17 +43,19 @@ export class SearchResultsComponent {
 
   update() {
     //Query the server and sort the results.
-    //TODO: This should use observables so that we can cancel the previouse request if it exists.
+    if(this.sub != null) {
+      this.sub.unsubscribe();
+    }
     var query = this.query || "";
     if(this.year == undefined || this.year == CURRENT_YEAR) {
-      this.rs.get('/search/'+ CURRENT_YEAR + "/" + query , (data) => {
+      this.sub = this.rs.getWithSub('/search/'+ CURRENT_YEAR + "/" + query , (data) => {
         this.results = data.results.sort((p1,p2) => {
           if (p1.views == "None")
             p1.views = 0;
           if (p2.views == "None")
             p2.views = 0;
           return p2.views - p1.views;
-        })
+        });
         this.showMore();
       }, undefined)
 

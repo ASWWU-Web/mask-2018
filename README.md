@@ -1,3 +1,2 @@
 # mask
-
-A super dooper new mask website. 
+A project for looking up other WWU students.
